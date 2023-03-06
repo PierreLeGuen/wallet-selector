@@ -65,6 +65,8 @@ export type {
   DeleteAccountAction,
   AddKeyPermission,
   AccountImportData,
+  SignMessageParams,
+  SignedMessage,
 } from "./lib/wallet";
 
 export type { FinalExecutionOutcome } from "near-api-js/lib/providers";
