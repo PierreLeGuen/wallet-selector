@@ -71,6 +71,6 @@ export type {
 
 export type { FinalExecutionOutcome } from "near-api-js/lib/providers";
 
-export { waitFor, getActiveAccount } from "./lib/helpers";
+export { waitFor, getActiveAccount, verifySignature } from "./lib/helpers";
 
 export { translate } from "./lib/translate/translate";
