@@ -37,6 +37,11 @@
           },
           {
             "glob": "**/*",
+            "input": "packages/xdefi/assets/",
+            "output": "assets/"
+          },
+          {
+            "glob": "**/*",
             "input": "packages/nearfi/assets/",
             "output": "assets/"
           },
@@ -84,6 +89,16 @@
             "glob": "**/*",
             "input": "packages/opto-wallet/assets/",
             "output": "assets/"
+          },
+          {
+            "glob": "**/*",
+            "input": "packages/finer-wallet/assets/",
+            "output": "assets/"
+          },
+          {
+            "glob": "**/*",
+            "input": "packages/xdefi/assets/",
+            "output": "assets/"
           }
         ],
         "styles": [
@@ -97,7 +112,7 @@
             {
               "type": "initial",
               "maximumWarning": "500kb",
-              "maximumError": "2mb"
+              "maximumError": "5mb"
             },
             {
               "type": "anyComponentStyle",

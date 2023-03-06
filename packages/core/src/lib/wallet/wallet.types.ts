@@ -21,6 +21,7 @@ interface BaseWalletMetadata {
 
 export interface Account {
   accountId: string;
+  publicKey?: string;
 }
 
 export interface SignInParams {
@@ -149,6 +150,7 @@ export type BrowserWallet = BaseWallet<
 
 export type InjectedWalletMetadata = BaseWalletMetadata & {
   downloadUrl: string;
+  useUrlAccountImport?: boolean;
 };
 
 export interface AccountImportData {
@@ -163,7 +165,7 @@ export interface AccountImportSecureContextParams {
 export type InjectedWalletBehaviour = Modify<
   BaseWalletBehaviour,
   {
-    buildImportAccountsUrl?: never;
+    buildImportAccountsUrl?(): string;
     importAccountsInSecureContext?(
       params: AccountImportSecureContextParams
     ): Promise<void>;

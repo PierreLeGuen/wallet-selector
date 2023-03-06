@@ -19,6 +19,7 @@ import { translate } from "@near-wallet-selector/core";
 export type HardwareWalletAccountState = HardwareWalletAccount & {
   selected: boolean;
 };
+let initialRender = true;
 
 const getAccountIds = async (publicKey: string): Promise<Array<string>> => {
   if (!modalState) {
@@ -131,6 +132,7 @@ export async function connectToWallet(
 
       subscription.remove();
       modalState.container.children[0].classList.remove("open");
+      modalState.emitter.emit("onHide", { hideReason: "wallet-navigation" });
       return;
     }
 
@@ -143,6 +145,7 @@ export async function connectToWallet(
       });
 
       modalState.container.children[0].classList.remove("open");
+      modalState.emitter.emit("onHide", { hideReason: "wallet-navigation" });
 
       return;
     }
@@ -153,6 +156,7 @@ export async function connectToWallet(
     });
 
     modalState.container.children[0].classList.remove("open");
+    modalState.emitter.emit("onHide", { hideReason: "wallet-navigation" });
   } catch (err) {
     const { name } = module.metadata;
     const message = err instanceof Error ? err.message : "Something went wrong";
@@ -284,7 +288,15 @@ export function renderModal() {
       `
     );
     renderOptionsList(".recent-options-list-content", recentlySignedInWallets);
-    renderOptionsList(".more-options-list-content", moreWallets);
+
+    if (modalState.selector.options.randomizeWalletOrder) {
+      renderOptionsList(
+        ".more-options-list-content",
+        moreWallets.sort(() => Math.random() - 0.5)
+      );
+    } else {
+      renderOptionsList(".more-options-list-content", moreWallets);
+    }
   } else {
     document
       .querySelector(".wallet-options-wrapper")
@@ -299,17 +311,29 @@ export function renderModal() {
         return;
       }
       modalState.container.children[0].classList.remove("open");
+
+      if (modalState.options.onHide) {
+        modalState.emitter.emit("onHide", { hideReason: "user-triggered" });
+      }
     });
 
-  document.addEventListener("click", (e) => {
-    if (!modalState) {
-      return;
-    }
+  // TODO: Better handle `click` event listener for close-button.
+  if (initialRender) {
+    document.addEventListener("click", (e) => {
+      if (!modalState) {
+        return;
+      }
 
-    const target = e.target as HTMLElement;
+      const target = e.target as HTMLElement;
 
-    if (target && target.className === "close-button") {
-      modalState.container.children[0].classList.remove("open");
-    }
-  });
+      if (target && target.className === "close-button") {
+        modalState.container.children[0].classList.remove("open");
+
+        if (modalState.options.onHide) {
+          modalState.emitter.emit("onHide", { hideReason: "user-triggered" });
+        }
+      }
+    });
+    initialRender = false;
+  }
 }

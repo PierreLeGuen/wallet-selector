@@ -7,6 +7,7 @@ import type {
   Transaction,
   FunctionCallAction,
   Optional,
+  Account,
 } from "@near-wallet-selector/core";
 import { waitFor } from "@near-wallet-selector/core";
 import type { InjectedSender } from "./injected-sender";
@@ -100,14 +101,33 @@ const Sender: WalletBehaviourFactory<InjectedWallet> = async ({
     });
   };
 
-  const getAccounts = () => {
+  const getAccounts = async (): Promise<Array<Account>> => {
     const accountId = _state.wallet.getAccountId();
 
     if (!accountId) {
       return [];
     }
 
-    return [{ accountId }];
+    await waitFor(() => !!_state.wallet.account(), { timeout: 100 });
+
+    const account = _state.wallet.account();
+
+    // When wallet is locked signer is empty an object {}.
+    if (!account!.connection.signer.getPublicKey) {
+      return [{ accountId, publicKey: undefined }];
+    }
+
+    const publicKey = await account!.connection.signer.getPublicKey(
+      account!.accountId,
+      options.network.networkId
+    );
+
+    return [
+      {
+        accountId,
+        publicKey: publicKey ? publicKey.toString() : undefined,
+      },
+    ];
   };
 
   const isValidActions = (
@@ -145,7 +165,7 @@ const Sender: WalletBehaviourFactory<InjectedWallet> = async ({
 
   return {
     async signIn({ contractId, methodNames }) {
-      const existingAccounts = getAccounts();
+      const existingAccounts = await getAccounts();
 
       if (existingAccounts.length) {
         return existingAccounts;
@@ -294,17 +314,20 @@ export function setupSender({
 }: SenderParams = {}): WalletModuleFactory<InjectedWallet> {
   return async () => {
     const mobile = isMobile();
-    const installed = await isInstalled();
-
     if (mobile) {
       return null;
     }
 
+    const installed = await isInstalled();
+
     // Add extra wait to ensure Sender's sign in status is read from the
     // browser extension background env.
-    await waitFor(() => !!window.near?.isSignedIn(), { timeout: 300 }).catch(
-      () => false
-    );
+    // Check for isSignedIn() in only if extension is installed.
+    if (installed) {
+      await waitFor(() => !!window.near?.isSignedIn(), { timeout: 200 }).catch(
+        () => false
+      );
+    }
 
     return {
       id: "sender",

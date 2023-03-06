@@ -8,15 +8,19 @@ NEAR Wallet Selector makes it easy for users to interact with your dApp by provi
 - [Math Wallet](https://www.npmjs.com/package/@near-wallet-selector/math-wallet) - Injected wallet.
 - [Nightly](https://www.npmjs.com/package/@near-wallet-selector/nightly) - Injected wallet.
 - [Meteor Wallet](https://www.npmjs.com/package/@near-wallet-selector/meteor-wallet) - Injected wallet.
+- [Metamask Snap](https://www.npmjs.com/package/@near-wallet-selector/near-snap) - Injected wallet.
+- [Narwallets](https://www.npmjs.com/package/@near-wallet-selector/narwallets) - Injected wallet.
 - [WELLDONE Wallet](https://www.npmjs.com/package/@near-wallet-selector/welldone-wallet) - Injected wallet.
 - [Coin98 Wallet](https://www.npmjs.com/package/@near-wallet-selector/coin98-wallet) - Injected wallet.
 - [Neth](https://www.npmjs.com/package/@near-wallet-selector/neth) - Injected wallet.
+- [XDEFI Wallet](https://www.npmjs.com/package/@near-wallet-selector/xdefi) - Injected wallet.
 - [Ledger](https://www.npmjs.com/package/@near-wallet-selector/ledger) - Hardware wallet.
 - [WalletConnect](https://www.npmjs.com/package/@near-wallet-selector/wallet-connect) - Bridge wallet.
 - [Nightly Connect](https://www.npmjs.com/package/@near-wallet-selector/nightly-connect) - Bridge wallet.
 - [Here Wallet](https://www.npmjs.com/package/@near-wallet-selector/here-wallet) - Mobile wallet.
 - [NearFi Wallet](https://www.npmjs.com/package/@near-wallet-selector/nearfi) - Mobile wallet.
 - [Opto Wallet](https://www.npmjs.com/package/@near-wallet-selector/opto-wallet) - Mobile wallet & Browser wallet.
+- [Finer Wallet](https://www.npmjs.com/package/@near-wallet-selector/finer-wallet) - Mobile wallet & Browser wallet.
 
 ## Preview
 
@@ -57,14 +61,18 @@ yarn add \
   @near-wallet-selector/math-wallet \
   @near-wallet-selector/nightly \
   @near-wallet-selector/meteor-wallet \
+  @near-wallet-selector/narwallets \
   @near-wallet-selector/welldone-wallet \
+  @near-wallet-selector/near-snap \
   @near-wallet-selector/ledger \
   @near-wallet-selector/wallet-connect \
   @near-wallet-selector/nightly-connect \
   @near-wallet-selector/default-wallets \
   @near-wallet-selector/coin98-wallet \
   @near-wallet-selector/opto-wallet \
-  @near-wallet-selector/neth
+  @near-wallet-selector/finer-wallet \
+  @near-wallet-selector/neth \
+  @near-wallet-selector/xdefi
 
 # Using NPM.
 npm install \
@@ -76,14 +84,18 @@ npm install \
   @near-wallet-selector/math-wallet \
   @near-wallet-selector/nightly \
   @near-wallet-selector/meteor-wallet \
+  @near-wallet-selector/narwallets \
   @near-wallet-selector/welldone-wallet \
+  @near-wallet-selector/near-snap \
   @near-wallet-selector/ledger \
   @near-wallet-selector/wallet-connect \
   @near-wallet-selector/nightly-connect \
   @near-wallet-selector/default-wallets \
   @near-wallet-selector/coin98-wallet \
   @near-wallet-selector/opto-wallet \
-  @near-wallet-selector/neth
+  @near-wallet-selector/finer-wallet \
+  @near-wallet-selector/neth \
+  @near-wallet-selector/xdefi
 ```
 
 Optionally, you can install our [`modal-ui`](https://www.npmjs.com/package/@near-wallet-selector/modal-ui) or [`modal-ui-js`](https://www.npmjs.com/package/@near-wallet-selector/modal-ui-js) package for a pre-built interface that wraps the `core` API and presents the supported wallets:
@@ -108,20 +120,22 @@ import { setupHereWallet } from "@near-wallet-selector/here-wallet";
 import { setupMathWallet } from "@near-wallet-selector/math-wallet";
 import { setupNightly } from "@near-wallet-selector/nightly";
 import { setupMeteorWallet } from "@near-wallet-selector/meteor-wallet";
+import { setupNarwallets } from "@near-wallet-selector/narwallets";
 import { setupWelldoneWallet } from "@near-wallet-selector/welldone-wallet";
+import { setupNearSnap } from "@near-wallet-selector/near-snap";
 import { setupLedger } from "@near-wallet-selector/ledger";
 import { setupWalletConnect } from "@near-wallet-selector/wallet-connect";
 import { setupNightlyConnect } from "@near-wallet-selector/nightly-connect";
-import { setupDefaultWallets } from "@near-wallet-selector/default-wallets";
 import { setupNearFi } from "@near-wallet-selector/nearfi";
 import { setupCoin98Wallet } from "@near-wallet-selector/coin98-wallet";
 import { setupOptoWallet } from "@near-wallet-selector/opto-wallet";
+import { setupFinerWallet } from "@near-wallet-selector/finer-wallet";
 import { setupNeth } from "@near-wallet-selector/neth";
+import { setupXDEFI } from "@near-wallet-selector/xdefi";
 
 const selector = await setupWalletSelector({
   network: "testnet",
   modules: [
-    ...(await setupDefaultWallets()),
     setupNearWallet(),
     setupMyNearWallet(),
     setupSender(),
@@ -129,12 +143,16 @@ const selector = await setupWalletSelector({
     setupMathWallet(),
     setupNightly(),
     setupMeteorWallet(),
+    setupNearSnap(),
+    setupNarwallets(),
     setupWelldoneWallet(),
     setupLedger(),
     setupNearFi(),
     setupCoin98Wallet(),
     setupOptoWallet(),
+    setupFinerWallet(),
     setupNeth(),
+    setupXDEFI(),
     setupWalletConnect({
       projectId: "c4f79cc...",
       metadata: {

@@ -6,7 +6,6 @@ import type {
   FunctionCallAction,
   WalletBehaviourFactory,
 } from "@near-wallet-selector/core";
-import { waitFor } from "@near-wallet-selector/core";
 import detectEthereumProvider from "@metamask/detect-provider";
 import { nethIcon } from "../assets/icons";
 import {
@@ -47,7 +46,7 @@ export interface NethParams {
 }
 
 const isInstalled = async () => {
-  await detectEthereumProvider();
+  await detectEthereumProvider({ timeout: 100 });
   return !!window.ethereum;
 };
 
@@ -153,8 +152,18 @@ const Neth: WalletBehaviourFactory<InjectedWallet> = async ({
     },
 
     async getAccounts() {
-      const { accountId } = await getNear();
-      return [{ accountId }];
+      const { accountId, account } = await getNear();
+      return [
+        {
+          accountId,
+          publicKey: (
+            await account.connection.signer.getPublicKey(
+              account.accountId,
+              options.network.networkId
+            )
+          ).toString(),
+        },
+      ];
     },
 
     signAndSendTransaction: async ({ receiverId, actions }) =>
@@ -184,13 +193,11 @@ export function setupNeth({
     bundle = _bundle;
 
     const mobile = isMobile();
-    const installed = await isInstalled();
-
-    await waitFor(() => !!isSignedIn(), { timeout: 300 }).catch(() => false);
-
     if (mobile) {
       return null;
     }
+
+    const installed = await isInstalled();
 
     return {
       id: "neth",

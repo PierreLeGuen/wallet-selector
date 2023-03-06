@@ -15,9 +15,32 @@ export const initHereWallet: SelectorInit = async (config) => {
     defaultStrategy,
   });
 
+  async function getAccounts() {
+    logger.log("HereWallet:getAccounts");
+    const accountIds = await here.getAccounts();
+    const accounts = [];
+
+    for (let i = 0; i < accountIds.length; i++) {
+      accounts.push({
+        accountId: accountIds[i],
+        publicKey: (
+          await here.signer.getPublicKey(
+            accountIds[i],
+            options.network.networkId
+          )
+        ).toString(),
+      });
+    }
+    return accounts;
+  }
+
   return {
     get networkId() {
       return here.networkId;
+    },
+
+    buildImportAccountsUrl() {
+      return `https://my.herewallet.app/import?network=${options.network.networkId}`;
     },
 
     async account(id) {
@@ -43,14 +66,16 @@ export const initHereWallet: SelectorInit = async (config) => {
     async signIn(data) {
       logger.log("HereWallet:signIn");
 
-      const account = await here.signIn(data);
+      const contractId = data.contractId !== "" ? data.contractId : undefined;
+      await here.signIn({ ...data, contractId: contractId });
+
       emitter.emit("signedIn", {
         contractId: data.contractId,
         methodNames: data.methodNames ?? [],
-        accounts: [{ accountId: account }],
+        accounts: await getAccounts(),
       });
 
-      return [{ accountId: account }];
+      return await getAccounts();
     },
 
     async getHereBalance() {
@@ -69,9 +94,7 @@ export const initHereWallet: SelectorInit = async (config) => {
     },
 
     async getAccounts() {
-      logger.log("HereWallet:getAccounts");
-      const accounts = await here.getAccounts();
-      return accounts.map((accountId) => ({ accountId }));
+      return getAccounts();
     },
 
     async signAndSendTransaction(data) {

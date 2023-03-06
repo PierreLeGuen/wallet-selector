@@ -5,6 +5,7 @@ import type {
   CodeResult,
 } from "near-api-js/lib/providers/provider";
 import type { SignedMessage, Transaction } from "@near-wallet-selector/core";
+import BN from "bn.js";
 
 import type { Account, Message } from "../interfaces";
 import { useWalletSelector } from "../contexts/WalletSelectorContext";
@@ -24,6 +25,28 @@ type Submitted = SubmitEvent & {
 const SUGGESTED_DONATION = "0";
 const BOATLOAD_OF_GAS = utils.format.parseNearAmount("0.00000000003")!;
 
+interface GetAccountBalanceProps {
+  provider: providers.Provider;
+  accountId: string;
+}
+
+const getAccountBalance = async ({
+  provider,
+  accountId,
+}: GetAccountBalanceProps) => {
+  try {
+    const { amount } = await provider.query<AccountView>({
+      request_type: "view_account",
+      finality: "final",
+      account_id: accountId,
+    });
+    const bn = new BN(amount);
+    return { hasBalance: !bn.isZero() };
+  } catch {
+    return { hasBalance: false };
+  }
+};
+
 const Content: React.FC = () => {
   const { selector, modal, accounts, accountId } = useWalletSelector();
   const [account, setAccount] = useState<Account | null>(null);
@@ -37,6 +60,20 @@ const Content: React.FC = () => {
 
     const { network } = selector.options;
     const provider = new providers.JsonRpcProvider({ url: network.nodeUrl });
+
+    const { hasBalance } = await getAccountBalance({
+      provider,
+      accountId,
+    });
+
+    if (!hasBalance) {
+      window.alert(
+        `Account ID: ${accountId} has not been founded. Please send some NEAR into this account.`
+      );
+      const wallet = await selector.wallet();
+      await wallet.signOut();
+      return null;
+    }
 
     return provider
       .query<AccountView>({
@@ -115,7 +152,6 @@ const Content: React.FC = () => {
     async (message: string, donation: string, multiple: boolean) => {
       const { contract } = selector.store.getState();
       const wallet = await selector.wallet();
-
       if (!multiple) {
         return wallet
           .signAndSendTransaction({

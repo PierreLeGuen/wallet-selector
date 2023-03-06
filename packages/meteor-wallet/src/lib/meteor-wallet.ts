@@ -1,4 +1,5 @@
 import type {
+  Account,
   InjectedWallet,
   Network,
   Optional,
@@ -53,14 +54,24 @@ const createMeteorWalletInjected: WalletBehaviourFactory<
 > = async ({ options, logger, store, params, metadata }) => {
   const _state = await setupWalletState(params, options.network);
 
-  const getAccounts = () => {
+  const getAccounts = async (): Promise<Array<Account>> => {
     const accountId = _state.wallet.getAccountId();
+    const account = _state.wallet.account();
 
-    if (!accountId) {
+    if (!accountId || !account) {
       return [];
     }
 
-    return [{ accountId }];
+    const publicKey = await account.connection.signer.getPublicKey(
+      account.accountId,
+      options.network.networkId
+    );
+    return [
+      {
+        accountId,
+        publicKey: publicKey ? publicKey.toString() : "",
+      },
+    ];
   };
 
   const transformTransactions = async (
@@ -200,6 +211,10 @@ const createMeteorWalletInjected: WalletBehaviourFactory<
 
       throw new Error(`Method not supported by ${metadata.name}`);
     },
+
+    buildImportAccountsUrl() {
+      return `https://wallet.meteorwallet.app/batch-import?network=${_state.wallet._networkId}`;
+    },
   };
 };
 
@@ -219,6 +234,7 @@ export function setupMeteorWallet({
         iconUrl,
         deprecated,
         downloadUrl: "https://wallet.meteorwallet.app",
+        useUrlAccountImport: true,
       },
       init: (options) => {
         return createMeteorWalletInjected({

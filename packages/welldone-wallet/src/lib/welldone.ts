@@ -8,6 +8,7 @@ import type {
   JsonStorageService,
   Optional,
   Transaction,
+  Account,
 } from "@near-wallet-selector/core";
 import { waitFor } from "@near-wallet-selector/core";
 import type {
@@ -101,7 +102,7 @@ const WelldoneWallet: WalletBehaviourFactory<InjectedWallet> = async ({
     }
   };
 
-  const getAccounts = () => {
+  const getAccounts = (): Array<Account> => {
     return _state.account
       ? [
           {
@@ -150,7 +151,7 @@ const WelldoneWallet: WalletBehaviourFactory<InjectedWallet> = async ({
         throw new Error("Failed to find public key for account");
       }
 
-      return utils.PublicKey.from(account.publicKey);
+      return utils.PublicKey.from(account.publicKey!);
     },
     signMessage: async (message, accountId) => {
       if (!_state.wallet) {
@@ -334,6 +335,29 @@ const WelldoneWallet: WalletBehaviourFactory<InjectedWallet> = async ({
 
       throw new Error(`Method not supported by ${metadata.name}`);
     },
+
+    async importAccountsInSecureContext({ accounts }) {
+      if (!_state.wallet) {
+        throw new Error("Wallet is not installed");
+      }
+      const privateKeys: Array<string> = [];
+      // use batch import
+      accounts.forEach(({ privateKey }) => {
+        if (privateKey.slice(0, 8) === "ed25519:") {
+          privateKeys.push(privateKey.slice(8));
+        } else {
+          privateKeys.push(privateKey);
+        }
+      });
+      const params = {
+        privateKey: privateKeys,
+        network: options.network.networkId,
+      };
+      await _state.wallet.request("near", {
+        method: "experimental:near:importPrivatekey",
+        params: [params],
+      });
+    },
   };
 };
 
@@ -343,11 +367,11 @@ export function setupWelldoneWallet({
 }: WelldoneWalletParams = {}): WalletModuleFactory<InjectedWallet> {
   return async () => {
     const mobile = isMobile();
-    const installed = await isInstalled();
-
     if (mobile) {
       return null;
     }
+
+    const installed = await isInstalled();
 
     return {
       id: "welldone-wallet",

@@ -19,10 +19,15 @@ import { distinctUntilChanged, map } from "rxjs";
 import { WalletSelectorModal } from "@near-wallet-selector/modal-ui";
 import { CONTRACT_ID } from "../../../constants";
 import { WalletSelector } from "@near-wallet-selector/core";
+<<<<<<< HEAD
 import {
   verifyFullKeyBelongsToUser,
   verifySignature,
 } from "@near-wallet-selector/core";
+=======
+import type { GetAccountBalanceProps } from "../../interfaces/account-balance";
+import BN from "bn.js";
+>>>>>>> dev
 
 const SUGGESTED_DONATION = "0";
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -42,6 +47,7 @@ export class ContentComponent implements OnInit, OnDestroy {
   account: Account | null;
   messages: Array<Message>;
   subscription?: Subscription;
+  getAccountBalanceProps: GetAccountBalanceProps;
 
   async ngOnInit() {
     const [messages, account] = await Promise.all([
@@ -55,6 +61,20 @@ export class ContentComponent implements OnInit, OnDestroy {
     this.subscribeToEvents();
   }
 
+  async getAccountBalance({ provider, accountId }: GetAccountBalanceProps) {
+    try {
+      const { amount } = await provider.query<AccountView>({
+        request_type: "view_account",
+        finality: "final",
+        account_id: accountId,
+      });
+      const bn = new BN(amount);
+      return { hasBalance: !bn.isZero() };
+    } catch {
+      return { hasBalance: false };
+    }
+  }
+
   async getAccount() {
     if (!this.accountId) {
       return null;
@@ -62,6 +82,20 @@ export class ContentComponent implements OnInit, OnDestroy {
 
     const { network } = this.selector.options;
     const provider = new providers.JsonRpcProvider({ url: network.nodeUrl });
+
+    const { hasBalance } = await this.getAccountBalance({
+      provider,
+      accountId: this.accountId,
+    });
+
+    if (!hasBalance) {
+      window.alert(
+        `Account ID: ${this.accountId} has not been founded. Please send some NEAR into this account.`
+      );
+      const wallet = await this.selector.wallet();
+      await wallet.signOut();
+      return null;
+    }
 
     return provider
       .query<AccountView>({
@@ -155,6 +189,10 @@ export class ContentComponent implements OnInit, OnDestroy {
           this.account = account;
         });
       });
+
+    this.modal.on("onHide", ({ hideReason }) => {
+      console.log(`The reason for hiding the modal ${hideReason}`);
+    });
   }
 
   async addMessages(message: string, donation: string, multiple: boolean) {
