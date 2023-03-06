@@ -51,7 +51,7 @@ const setupWalletState = async (
 const createMeteorWalletInjected: WalletBehaviourFactory<
   InjectedWallet,
   { params: MeteorWalletParams_Injected }
-> = async ({ options, logger, store, params }) => {
+> = async ({ options, logger, store, params, metadata }) => {
   const _state = await setupWalletState(params, options.network);
 
   const getAccounts = async (): Promise<Array<Account>> => {
@@ -209,6 +209,11 @@ const createMeteorWalletInjected: WalletBehaviourFactory<
 
     buildImportAccountsUrl() {
       return `https://wallet.meteorwallet.app/batch-import?network=${_state.wallet._networkId}`;
+    },
+    async signMessage({ message, nonce, recipient }) {
+      logger.log("MeteorWallet:signMessage", { message, nonce, recipient });
+
+      throw new Error(`Method not supported by ${metadata.name}`);
     },
   };
 };

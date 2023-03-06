@@ -4,6 +4,7 @@ import type BN from "bn.js";
 
 import type { SelectorInit } from "./types";
 
+// @ts-ignore
 export const initHereWallet: SelectorInit = async (config) => {
   const { store, logger, emitter, options, defaultProvider, defaultStrategy } =
     config;
@@ -119,6 +120,7 @@ export const initHereWallet: SelectorInit = async (config) => {
 
     async signMessage(data) {
       logger.log("HereWallet:signMessage", data);
+      // @ts-ignore
       return await here.signMessage(data);
     },
 

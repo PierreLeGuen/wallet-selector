@@ -222,6 +222,12 @@ const Nightly: WalletBehaviourFactory<InjectedWallet> = async ({
     async importAccountsInSecureContext(params) {
       _state.wallet.importWalletsNear(params.accounts);
     },
+
+    async signMessage({ message, nonce, recipient }) {
+      logger.log("Nightly:signMessage", { message, nonce, recipient });
+
+      throw new Error(`Method not supported by ${metadata.name}`);
+    },
   };
 };
 

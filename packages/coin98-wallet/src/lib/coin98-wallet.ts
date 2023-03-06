@@ -182,6 +182,11 @@ const Coin98Wallet: WalletBehaviourFactory<InjectedWallet> = async ({
 
       return results;
     },
+    async signMessage({ message, nonce, recipient }) {
+      logger.log("Coin98Wallet:signMessage", { message, nonce, recipient });
+
+      throw new Error(`Method not supported by ${metadata.name}`);
+    },
   };
 };
 

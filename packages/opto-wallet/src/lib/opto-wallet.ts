@@ -233,6 +233,16 @@ const OptoWallet: WalletBehaviourFactory<
         callbackUrl,
       });
     },
+    async signMessage({ message, nonce, recipient, callbackUrl }) {
+      logger.log("OptoWallet:signMessage", {
+        message,
+        nonce,
+        recipient,
+        callbackUrl,
+      });
+
+      throw new Error(`Method not supported by ${metadata.name}`);
+    },
   };
 };
 
