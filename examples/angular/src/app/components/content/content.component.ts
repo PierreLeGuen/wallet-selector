@@ -5,7 +5,11 @@ import type {
   AccountView,
   CodeResult,
 } from "near-api-js/lib/providers/provider";
-import type { AccountState, Transaction } from "@near-wallet-selector/core";
+import type {
+  AccountState,
+  SignedMessage,
+  Transaction,
+} from "@near-wallet-selector/core";
 
 import type { Message } from "../../interfaces/message";
 import type { Submitted } from "../form/form.component";
@@ -14,7 +18,7 @@ import type { Subscription } from "rxjs";
 import { distinctUntilChanged, map } from "rxjs";
 import { WalletSelectorModal } from "@near-wallet-selector/modal-ui";
 import { CONTRACT_ID } from "../../../constants";
-import { WalletSelector } from "@near-wallet-selector/core";
+import { verifySignature, WalletSelector } from "@near-wallet-selector/core";
 import type { GetAccountBalanceProps } from "../../interfaces/account-balance";
 import BN from "bn.js";
 
@@ -274,6 +278,51 @@ export class ContentComponent implements OnInit, OnDestroy {
 
         fieldset.disabled = false;
       });
+  }
+
+  async onSignMessage() {
+    const wallet = await this.selector.wallet();
+
+    const message = "test message for verification";
+    let nonceArray: Uint8Array = new Uint8Array(32);
+    nonceArray = crypto.getRandomValues(nonceArray);
+    const nonce = Buffer.from(nonceArray);
+    const recipient = "https://near.github.io/wallet-selector/";
+
+    try {
+      const signedMessage = (await wallet.signMessage({
+        message,
+        nonce,
+        recipient,
+      })) as SignedMessage;
+
+      const verifiedSignature = verifySignature({
+        publicKey: signedMessage.publicKey,
+        signature: signedMessage.signature,
+        message,
+        nonce,
+        recipient,
+      });
+
+      //TODO: verify signed message for browser wallets after redirect.
+      if (verifiedSignature) {
+        alert(
+          `Successfully verified signed message: '${message}': \n ${JSON.stringify(
+            signedMessage
+          )}`
+        );
+      } else {
+        alert(
+          `Failed verifying signed message '${message}': \n ${JSON.stringify(
+            signedMessage
+          )}`
+        );
+      }
+    } catch (err) {
+      const errorMessage =
+        err instanceof Error ? err.message : "Something went wrong";
+      alert(errorMessage);
+    }
   }
 
   ngOnDestroy() {

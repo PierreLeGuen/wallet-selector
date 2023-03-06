@@ -13,6 +13,7 @@ import { CONTRACT_ID } from "../constants";
 import SignIn from "./SignIn";
 import Form from "./Form";
 import Messages from "./Messages";
+import { verifySignature } from "@near-wallet-selector/core";
 
 type Submitted = SubmitEvent & {
   target: { elements: { [key: string]: HTMLInputElement } };
@@ -256,6 +257,51 @@ const Content: React.FC = () => {
     [addMessages, getMessages]
   );
 
+  const handleSignMessage = async () => {
+    const wallet = await selector.wallet();
+
+    const message = "test message for verification";
+    let nonceArray: Uint8Array = new Uint8Array(32);
+    nonceArray = crypto.getRandomValues(nonceArray);
+    const nonce = Buffer.from(nonceArray);
+    const recipient = "https://near.github.io/wallet-selector/";
+
+    try {
+      const signedMessage = await wallet.signMessage({
+        message,
+        nonce,
+        recipient,
+      });
+
+      const verifiedSignature = verifySignature({
+        publicKey: signedMessage!.publicKey,
+        signature: signedMessage!.signature,
+        message,
+        nonce,
+        recipient,
+      });
+
+      //TODO: verify signed message for browser wallets after redirect.
+      if (verifiedSignature) {
+        alert(
+          `Successfully verified signed message: '${message}': \n ${JSON.stringify(
+            signedMessage
+          )}`
+        );
+      } else {
+        alert(
+          `Failed verifying signed message '${message}': \n ${JSON.stringify(
+            signedMessage
+          )}`
+        );
+      }
+    } catch (err) {
+      const errorMessage =
+        err instanceof Error ? err.message : "Something went wrong";
+      alert(errorMessage);
+    }
+  };
+
   if (loading) {
     return null;
   }
@@ -277,6 +323,7 @@ const Content: React.FC = () => {
         <button onClick={handleSignOut}>Log out</button>
         <button onClick={handleSwitchWallet}>Switch Wallet</button>
         <button onClick={handleVerifyOwner}>Verify Owner</button>
+        <button onClick={handleSignMessage}>Sign Message</button>
         {accounts.length > 1 && (
           <button onClick={handleSwitchAccount}>Switch Account</button>
         )}
