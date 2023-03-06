@@ -146,6 +146,12 @@ const XDEFI: WalletBehaviourFactory<InjectedWallet> = async ({
 
       return result;
     },
+
+    async signMessage({ message, nonce, recipient }) {
+      logger.log("XDEFI:signMessage", { message, nonce, recipient });
+
+      throw new Error(`Method not supported by ${metadata.name}`);
+    },
   };
 };
 
