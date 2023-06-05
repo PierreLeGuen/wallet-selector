@@ -1,4 +1,4 @@
-import type { WalletModuleFactory } from "@near-wallet-selector/core";
+import type { WalletModuleFactory } from "@near-finance-near-wallet-selector/core";
 
 export const setupDefaultWallets = async (): Promise<
   Array<WalletModuleFactory>

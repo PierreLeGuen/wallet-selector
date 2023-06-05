@@ -1,4 +1,4 @@
-# @near-wallet-selector/account-export
+# @near-finance-near-wallet-selector/account-export
 
 ## Wallet Selector Integration
 

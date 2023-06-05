@@ -20,9 +20,9 @@ import type {
   Transaction,
   WalletBehaviourFactory,
   WalletModuleFactory,
-} from "@near-wallet-selector/core";
-import { getActiveAccount } from "@near-wallet-selector/core";
-import { signTransactions } from "@near-wallet-selector/wallet-utils";
+} from "@near-finance-near-wallet-selector/core";
+import { getActiveAccount } from "@near-finance-near-wallet-selector/core";
+import { signTransactions } from "@near-finance-near-wallet-selector/wallet-utils";
 import type { FinalExecutionOutcome } from "near-api-js/lib/providers";
 import icon from "./icon";
 

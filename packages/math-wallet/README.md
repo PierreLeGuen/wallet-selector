@@ -1,4 +1,4 @@
-# @near-wallet-selector/math-wallet
+# @near-finance-near-wallet-selector/math-wallet
 
 This is the [Math Wallet](https://chrome.google.com/webstore/detail/math-wallet/afbcbjpbpfadlkmhmclhkeeodmamcflc) package for NEAR Wallet Selector.
 
@@ -16,17 +16,17 @@ npm install near-api-js
 
 ```bash
 # Using Yarn
-yarn add @near-wallet-selector/math-wallet
+yarn add @near-finance-near-wallet-selector/math-wallet
 
 # Using NPM.
-npm install @near-wallet-selector/math-wallet
+npm install @near-finance-near-wallet-selector/math-wallet
 ```
 
 Then use it in your dApp:
 
 ```ts
-import { setupWalletSelector } from "@near-wallet-selector/core";
-import { setupMathWallet } from "@near-wallet-selector/math-wallet";
+import { setupWalletSelector } from "@near-finance-near-wallet-selector/core";
+import { setupMathWallet } from "@near-finance-near-wallet-selector/math-wallet";
 
 // Math Wallet for Wallet Selector can be setup without any params or it can take one optional param.
 const mathWallet = setupMathWallet({
@@ -49,8 +49,8 @@ const selector = await setupWalletSelector({
 Assets such as icons can be found in the `/assets` directory of the package. Below is an example using Webpack:
 
 ```ts
-import { setupMathWallet } from "@near-wallet-selector/math-wallet";
-import mathWalletIconUrl from "@near-wallet-selector/math-wallet/assets/math-wallet-icon.png";
+import { setupMathWallet } from "@near-finance-near-wallet-selector/math-wallet";
+import mathWalletIconUrl from "@near-finance-near-wallet-selector/math-wallet/assets/math-wallet-icon.png";
 
 const mathWallet = setupMathWallet({
   iconUrl: mathWalletIconUrl

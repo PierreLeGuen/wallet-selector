@@ -6,7 +6,7 @@ import type {
 import type {
   WalletBehaviourFactory,
   InjectedWallet,
-} from "@near-wallet-selector/core";
+} from "@near-finance-near-wallet-selector/core";
 
 export type HereWallet = InjectedWallet &
   Omit<Omit<HereWalletProtocol, "getAccounts">, "signIn">;

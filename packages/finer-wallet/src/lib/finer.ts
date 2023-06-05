@@ -3,8 +3,8 @@ import type {
   WalletModuleFactory,
   BrowserWallet,
   InjectedWallet,
-} from "@near-wallet-selector/core";
-import type { MyNearWalletParams } from "@near-wallet-selector/my-near-wallet";
+} from "@near-finance-near-wallet-selector/core";
+import type { MyNearWalletParams } from "@near-finance-near-wallet-selector/my-near-wallet";
 import { setupFinerBrowser } from "./finer-browser";
 import { setupFinerInjected } from "./finer-injected";
 import icon from "./icon";

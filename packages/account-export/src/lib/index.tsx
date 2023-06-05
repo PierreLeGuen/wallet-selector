@@ -1,8 +1,7 @@
-import React from "react";
+import type { WalletSelector } from "@near-finance-near-wallet-selector/core";
 import { createRoot } from "react-dom/client";
-import type { WalletSelector } from "@near-wallet-selector/core";
 
-import type { WalletSelectorModal, ExportSelectorOptions } from "./index.types";
+import type { ExportSelectorOptions, WalletSelectorModal } from "./index.types";
 
 import { ExportSelector } from "./components/ExportSelector";
 

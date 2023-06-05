@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
 import type {
-  WalletSelector,
-  ModuleState,
-  Wallet,
-} from "@near-wallet-selector/core";
-import { translate } from "@near-wallet-selector/core";
+    ModuleState,
+    Wallet,
+    WalletSelector,
+} from "@near-finance-near-wallet-selector/core";
+import { translate } from "@near-finance-near-wallet-selector/core";
+import React, { useEffect, useState } from "react";
 
 interface WalletListProps {
   selector: WalletSelector;

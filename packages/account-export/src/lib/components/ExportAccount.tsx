@@ -1,26 +1,26 @@
-import React, { Fragment, useEffect, useState } from "react";
-import BN from "bn.js";
 import type {
-  BrowserWalletBehaviour,
-  InjectedWalletBehaviour,
-  ModuleState,
-  Wallet,
-  WalletSelector,
-  AccountImportData,
-  InjectedWalletMetadata,
-} from "@near-wallet-selector/core";
+    AccountImportData,
+    BrowserWalletBehaviour,
+    InjectedWalletBehaviour,
+    InjectedWalletMetadata,
+    ModuleState,
+    Wallet,
+    WalletSelector,
+} from "@near-finance-near-wallet-selector/core";
+import BN from "bn.js";
+import React, { Fragment, useEffect, useState } from "react";
 
 import * as nearAPI from "near-api-js";
 import type {
-  FunctionCallPermissionView,
-  AccessKeyView,
-  AccountView,
+    AccessKeyView,
+    AccountView,
+    FunctionCallPermissionView,
 } from "near-api-js/lib/providers/provider";
 
 import { AccountSelect } from "./AccountSelect";
-import { Passphrase } from "./Passphrase";
-import { NoInterface } from "./NoInterface";
 import { Complete } from "./Complete";
+import { NoInterface } from "./NoInterface";
+import { Passphrase } from "./Passphrase";
 
 import { encryptAccountData } from "../helpers";
 

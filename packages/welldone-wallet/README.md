@@ -1,4 +1,4 @@
-# @near-wallet-selector/welldone
+# @near-finance-near-wallet-selector/welldone
 
 This is the [WELLDONE](https://chrome.google.com/webstore/detail/welldone-wallet-for-multi/bmkakpenjmcpfhhjadflneinmhboecjf) package for NEAR Wallet Selector.
 
@@ -15,17 +15,17 @@ npm install near-api-js
 ```
 ```bash
 # Using Yarn
-yarn add @near-wallet-selector/welldone-wallet
+yarn add @near-finance-near-wallet-selector/welldone-wallet
 
 # Using NPM.
-npm install @near-wallet-selector/welldone-wallet
+npm install @near-finance-near-wallet-selector/welldone-wallet
 ```
 
 Then use it in your dApp:
 
 ```ts
-import { setupWalletSelector } from "@near-wallet-selector/core";
-import { setupWelldoneWallet } from "@near-wallet-selector/welldone-wallet";
+import { setupWalletSelector } from "@near-finance-near-wallet-selector/core";
+import { setupWelldoneWallet } from "@near-finance-near-wallet-selector/welldone-wallet";
 
 // WELLDONE Wallet for Wallet Selector can be setup without any params or it can take one optional param.
 const welldone = setupWelldoneWallet({
@@ -48,8 +48,8 @@ const selector = await setupWalletSelector({
 Assets such as icons can be found in the `/assets` directory of the package. Below is an example using Webpack:
 
 ```ts
-import { setupWelldoneWallet } from "@near-wallet-selector/welldone-wallet";
-import welldoneIconUrl from "@near-wallet-selector/welldone-wallet/assets/welldone-wallet.png";
+import { setupWelldoneWallet } from "@near-finance-near-wallet-selector/welldone-wallet";
+import welldoneIconUrl from "@near-finance-near-wallet-selector/welldone-wallet/assets/welldone-wallet.png";
 
 const welldone = setupWelldoneWallet({
   iconUrl: welldoneIconUrl

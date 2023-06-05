@@ -1,5 +1,5 @@
+import { translate } from "@near-finance-near-wallet-selector/core";
 import React, { useState } from "react";
-import { translate } from "@near-wallet-selector/core";
 
 interface ClickToCopyProps {
   children: React.ReactNode;

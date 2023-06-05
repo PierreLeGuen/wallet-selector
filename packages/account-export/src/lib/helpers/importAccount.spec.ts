@@ -1,4 +1,4 @@
-import type { AccountImportData } from "@near-wallet-selector/core";
+import type { AccountImportData } from "@near-finance-near-wallet-selector/core";
 
 import {
   encryptAccountData,

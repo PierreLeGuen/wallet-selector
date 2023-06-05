@@ -5,16 +5,16 @@ import type {
   AccountView,
   CodeResult,
 } from "near-api-js/lib/providers/provider";
-import type { AccountState, Transaction } from "@near-wallet-selector/core";
+import type { AccountState, Transaction } from "@near-finance-near-wallet-selector/core";
 
 import type { Message } from "../../interfaces/message";
 import type { Submitted } from "../form/form.component";
 import type { Account } from "../../interfaces/account";
 import type { Subscription } from "rxjs";
 import { distinctUntilChanged, map } from "rxjs";
-import { WalletSelectorModal } from "@near-wallet-selector/modal-ui";
+import { WalletSelectorModal } from "@near-finance-near-wallet-selector/modal-ui";
 import { CONTRACT_ID } from "../../../constants";
-import { WalletSelector } from "@near-wallet-selector/core";
+import { WalletSelector } from "@near-finance-near-wallet-selector/core";
 import type { GetAccountBalanceProps } from "../../interfaces/account-balance";
 import BN from "bn.js";
 

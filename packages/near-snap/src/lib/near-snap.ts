@@ -2,7 +2,7 @@ import type {
   WalletModuleFactory,
   WalletBehaviourFactory,
   InjectedWallet,
-} from "@near-wallet-selector/core";
+} from "@near-finance-near-wallet-selector/core";
 import { isMobile } from "is-mobile";
 import { enable, getSnapAccounts, signTransactions } from "./methods";
 import { isMetaMaskAvailable } from "./utils";

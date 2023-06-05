@@ -1,8 +1,8 @@
+import { translate } from "@near-finance-near-wallet-selector/core";
 import React, { Fragment, useEffect, useState } from "react";
 import { generateSecretKey } from "../helpers";
-import { translate } from "@near-wallet-selector/core";
-import { ModalHeader } from "./ModalHeader";
 import { ClickToCopy } from "./ClickToCopy";
+import { ModalHeader } from "./ModalHeader";
 
 export interface PassphraseProps {
   onNextStep: () => void;

@@ -1,4 +1,4 @@
-import type { Action } from "@near-wallet-selector/core";
+import type { Action } from "@near-finance-near-wallet-selector/core";
 
 declare global {
   interface Window {

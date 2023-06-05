@@ -1,4 +1,4 @@
-# @near-wallet-selector/core
+# @near-finance-near-wallet-selector/core
 
 This is the core package for NEAR Wallet Selector.
 
@@ -16,17 +16,17 @@ npm install near-api-js
 
 ```bash
 # Using Yarn
-yarn add @near-wallet-selector/core
+yarn add @near-finance-near-wallet-selector/core
 
 # Using NPM.
-npm install @near-wallet-selector/core
+npm install @near-finance-near-wallet-selector/core
 ```
 
 Then use it in your dApp:
 
 ```ts
-import { setupWalletSelector } from "@near-wallet-selector/core";
-import { setupNearWallet } from "@near-wallet-selector/near-wallet";
+import { setupWalletSelector } from "@near-finance-near-wallet-selector/core";
+import { setupNearWallet } from "@near-finance-near-wallet-selector/near-wallet";
 
 // The entire set of options can be found in the section below.
 const selector = await setupWalletSelector({

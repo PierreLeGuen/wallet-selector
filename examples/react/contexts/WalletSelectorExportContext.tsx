@@ -1,31 +1,31 @@
+import type { WalletSelectorModal } from "@near-finance-near-wallet-selector/account-export";
+import { setupExportSelectorModal } from "@near-finance-near-wallet-selector/account-export";
+import { setupCoin98Wallet } from "@near-finance-near-wallet-selector/coin98-wallet";
+import type { AccountState, WalletSelector } from "@near-finance-near-wallet-selector/core";
+import { setupWalletSelector } from "@near-finance-near-wallet-selector/core";
+import { setupHereWallet } from "@near-finance-near-wallet-selector/here-wallet";
+import { setupLedger } from "@near-finance-near-wallet-selector/ledger";
+import { setupMathWallet } from "@near-finance-near-wallet-selector/math-wallet";
+import { setupMeteorWallet } from "@near-finance-near-wallet-selector/meteor-wallet";
+import { setupMyNearWallet } from "@near-finance-near-wallet-selector/my-near-wallet";
+import { setupNearWallet } from "@near-finance-near-wallet-selector/near-wallet";
+import { setupNearFi } from "@near-finance-near-wallet-selector/nearfi";
+import { setupNightly } from "@near-finance-near-wallet-selector/nightly";
+import { setupNightlyConnect } from "@near-finance-near-wallet-selector/nightly-connect";
+import { setupOptoWallet } from "@near-finance-near-wallet-selector/opto-wallet";
+import { setupSender } from "@near-finance-near-wallet-selector/sender";
+import { setupWalletConnect } from "@near-finance-near-wallet-selector/wallet-connect";
+import { setupWelldoneWallet } from "@near-finance-near-wallet-selector/welldone-wallet";
 import type { ReactNode } from "react";
 import React, {
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-  useMemo,
+    useCallback,
+    useContext,
+    useEffect,
+    useMemo,
+    useState,
 } from "react";
-import { map, distinctUntilChanged } from "rxjs";
-import { setupWalletSelector } from "@near-wallet-selector/core";
-import type { WalletSelector, AccountState } from "@near-wallet-selector/core";
-import { setupExportSelectorModal } from "@near-wallet-selector/account-export";
-import type { WalletSelectorModal } from "@near-wallet-selector/account-export";
-import { setupNearWallet } from "@near-wallet-selector/near-wallet";
-import { setupHereWallet } from "@near-wallet-selector/here-wallet";
-import { setupSender } from "@near-wallet-selector/sender";
-import { setupMathWallet } from "@near-wallet-selector/math-wallet";
-import { setupNightly } from "@near-wallet-selector/nightly";
-import { setupMeteorWallet } from "@near-wallet-selector/meteor-wallet";
-import { setupWelldoneWallet } from "@near-wallet-selector/welldone-wallet";
-import { setupNightlyConnect } from "@near-wallet-selector/nightly-connect";
-import { setupNearFi } from "@near-wallet-selector/nearfi";
-import { setupWalletConnect } from "@near-wallet-selector/wallet-connect";
-import { setupCoin98Wallet } from "@near-wallet-selector/coin98-wallet";
-import { setupOptoWallet } from "@near-wallet-selector/opto-wallet";
+import { distinctUntilChanged, map } from "rxjs";
 import { Loading } from "../components/Loading";
-import { setupMyNearWallet } from "@near-wallet-selector/my-near-wallet";
-import { setupLedger } from "@near-wallet-selector/ledger";
 
 declare global {
   interface Window {

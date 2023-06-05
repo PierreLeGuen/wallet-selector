@@ -1,4 +1,4 @@
-# @near-wallet-selector/opto-wallet
+# @near-finance-near-wallet-selector/opto-wallet
 
 This is the [Opto Wallet](https://optowallet.com/) package for NEAR Wallet Selector.
 
@@ -15,17 +15,17 @@ npm install near-api-js
 ```
 ```bash
 # Using Yarn
-yarn add @near-wallet-selector/opto-wallet
+yarn add @near-finance-near-wallet-selector/opto-wallet
 
 # Using NPM.
-npm install @near-wallet-selector/opto-wallet
+npm install @near-finance-near-wallet-selector/opto-wallet
 ```
 
 Then use it in your dApp:
 
 ```ts
-import { setupWalletSelector } from "@near-wallet-selector/core";
-import { setupOptoWallet } from "@near-wallet-selector/opto-wallet";
+import { setupWalletSelector } from "@near-finance-near-wallet-selector/core";
+import { setupOptoWallet } from "@near-finance-near-wallet-selector/opto-wallet";
 
 // My NEAR Wallet for Wallet Selector can be setup without any params or it can take two optional params.
 const optoWallet = setupOptoWallet({
@@ -50,8 +50,8 @@ const selector = await setupWalletSelector({
 Assets such as icons can be found in the `/assets` directory of the package. Below is an example using Webpack:
 
 ```ts
-import { setupOptoWallet } from "@near-wallet-selector/opto-wallet";
-import optoWalletIconUrl from "@near-wallet-selector/opto-wallet/assets/opto-wallet-icon.png";
+import { setupOptoWallet } from "@near-finance-near-wallet-selector/opto-wallet";
+import optoWalletIconUrl from "@near-finance-near-wallet-selector/opto-wallet/assets/opto-wallet-icon.png";
 
 const optoWallet = setupOptoWallet({
   iconUrl: optoWalletIconUrl

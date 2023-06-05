@@ -6,7 +6,7 @@ import {
   decodeBase64,
 } from "tweetnacl-util";
 
-import type { AccountImportData } from "@near-wallet-selector/core";
+import type { AccountImportData } from "@near-finance-near-wallet-selector/core";
 
 interface DecryptAccountDataProps {
   ciphertext: string;

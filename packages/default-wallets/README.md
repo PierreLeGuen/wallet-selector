@@ -1,4 +1,4 @@
-# @near-wallet-selector/default-wallets
+# @near-finance-near-wallet-selector/default-wallets
 
 This is the Default Wallets package for NEAR Wallet Selector.
 
@@ -19,17 +19,17 @@ npm install near-api-js
 ```
 ```bash
 # Using Yarn
-yarn add @near-wallet-selector/default-wallets
+yarn add @near-finance-near-wallet-selector/default-wallets
 
 # Using NPM.
-npm install @near-wallet-selector/default-wallets
+npm install @near-finance-near-wallet-selector/default-wallets
 ```
 
 Then use it in your dApp:
 
 ```ts
-import { setupWalletSelector } from "@near-wallet-selector/core";
-import { setupDefaultWallets } from "@near-wallet-selector/default-wallets";
+import { setupWalletSelector } from "@near-finance-near-wallet-selector/core";
+import { setupDefaultWallets } from "@near-finance-near-wallet-selector/default-wallets";
 
 const selector = await setupWalletSelector({
   network: "testnet",
@@ -49,8 +49,8 @@ You can override configuration for a wallet that is in the default list by inclu
 
 ```ts
 // The same can be done for MyNearWallet and Ledger too.
-import { setupWalletSelector } from "@near-wallet-selector/core";
-import { setupDefaultWallets } from "@near-wallet-selector/default-wallets";
+import { setupWalletSelector } from "@near-finance-near-wallet-selector/core";
+import { setupDefaultWallets } from "@near-finance-near-wallet-selector/default-wallets";
 
 const selector = await setupWalletSelector({
   network: "testnet",

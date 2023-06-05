@@ -1,5 +1,5 @@
 import type { HereProvider, HereStrategy } from "@here-wallet/core";
-import type { WalletModuleFactory } from "@near-wallet-selector/core";
+import type { WalletModuleFactory } from "@near-finance-near-wallet-selector/core";
 import type { HereWallet } from "./types";
 import { initHereWallet } from "./selector";
 import icon from "./icon";

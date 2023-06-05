@@ -1,10 +1,10 @@
-import React from "react";
-import QRCode from "qrcode";
+import type { ModuleState, Wallet } from "@near-finance-near-wallet-selector/core";
+import { translate } from "@near-finance-near-wallet-selector/core";
 import copy from "copy-to-clipboard";
+import QRCode from "qrcode";
+import React from "react";
 import { ModalHeader } from "./ModalHeader";
 import { CopyIcon } from "./icons/CopyIcon";
-import { translate } from "@near-wallet-selector/core";
-import type { ModuleState, Wallet } from "@near-wallet-selector/core";
 
 interface ScanQRCodeProps {
   wallet: ModuleState<Wallet>;

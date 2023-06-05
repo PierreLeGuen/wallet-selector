@@ -1,4 +1,4 @@
-# @near-wallet-selector/narwallets
+# @near-finance-near-wallet-selector/narwallets
 
 This is the [Narwallets](https://chrome.google.com/webstore/detail/narwallets-v4/lkpeokpdkmcdaiadpmnnpimlgmdobkdj) package for NEAR Wallet Selector.
 
@@ -8,17 +8,17 @@ The easiest way to use this package is to install it from the NPM registry:
 
 ```bash
 # Using Yarn
-yarn add @near-wallet-selector/narwallets
+yarn add @near-finance-near-wallet-selector/narwallets
 
 # Using NPM.
-npm install @near-wallet-selector/narwallets
+npm install @near-finance-near-wallet-selector/narwallets
 ```
 
 Then use it in your dApp:
 
 ```ts
-import { setupWalletSelector } from "@near-wallet-selector/core";
-import { setupNarwallets } from "@near-wallet-selector/narwallets";
+import { setupWalletSelector } from "@near-finance-near-wallet-selector/core";
+import { setupNarwallets } from "@near-finance-near-wallet-selector/narwallets";
 
 // Narwallets for Wallet Selector can be setup without any params or it can take one optional param.
 const narwallets = setupNarwallets({
@@ -41,8 +41,8 @@ const selector = await setupWalletSelector({
 Assets such as icons can be found in the `/assets` directory of the package. Below is an example using Webpack:
 
 ```ts
-import { setupNarwallets } from "@near-wallet-selector/narwallets";
-import narwalletsIconUrl from "@near-wallet-selector/narwallets/assets/narwallets-icon.png";
+import { setupNarwallets } from "@near-finance-near-wallet-selector/narwallets";
+import narwalletsIconUrl from "@near-finance-near-wallet-selector/narwallets/assets/narwallets-icon.png";
 
 const narwallets = setupNarwallets({
   iconUrl: narwalletsIconUrl

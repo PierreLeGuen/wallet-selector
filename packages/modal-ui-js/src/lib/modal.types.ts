@@ -1,6 +1,6 @@
-import type { Wallet } from "@near-wallet-selector/core";
-import type { ModuleState } from "@near-wallet-selector/core";
-import type { Subscription } from "@near-wallet-selector/core";
+import type { Wallet } from "@near-finance-near-wallet-selector/core";
+import type { ModuleState } from "@near-finance-near-wallet-selector/core";
+import type { Subscription } from "@near-finance-near-wallet-selector/core";
 
 export type Theme = "dark" | "light" | "auto";
 

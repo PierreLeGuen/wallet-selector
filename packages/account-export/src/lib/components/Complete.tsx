@@ -1,4 +1,4 @@
-import { translate } from "@near-wallet-selector/core";
+import { translate } from "@near-finance-near-wallet-selector/core";
 import React from "react";
 import { ModalHeader } from "./ModalHeader";
 

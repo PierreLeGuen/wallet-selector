@@ -6,9 +6,9 @@ import type {
   Account,
   Action,
   FinalExecutionOutcome,
-} from "@near-wallet-selector/core";
+} from "@near-finance-near-wallet-selector/core";
 import icon from "./icon";
-import { waitFor } from "@near-wallet-selector/core";
+import { waitFor } from "@near-finance-near-wallet-selector/core";
 
 declare global {
   interface Window {

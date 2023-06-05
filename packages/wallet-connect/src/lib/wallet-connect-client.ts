@@ -5,7 +5,7 @@ import type { SessionTypes } from "@walletconnect/types";
 import type {
   EventEmitterService,
   WalletEvents,
-} from "@near-wallet-selector/core";
+} from "@near-finance-near-wallet-selector/core";
 
 class WalletConnectClient {
   private client: Client;

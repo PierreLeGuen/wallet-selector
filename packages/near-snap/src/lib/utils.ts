@@ -1,4 +1,4 @@
-import type { Account } from "@near-wallet-selector/core";
+import type { Account } from "@near-finance-near-wallet-selector/core";
 import type { GetAccountPayload } from "./types";
 
 export function getSnapOrigin(isDev: boolean): string {

@@ -1,4 +1,4 @@
-// based on @near-wallet-selector/sender
+// based on @near-finance-near-wallet-selector/sender
 
 import { isMobile } from "is-mobile";
 import type {
@@ -9,8 +9,8 @@ import type {
   Transaction,
   FunctionCallAction,
   Optional,
-} from "@near-wallet-selector/core";
-import { waitFor } from "@near-wallet-selector/core";
+} from "@near-finance-near-wallet-selector/core";
+import { waitFor } from "@near-finance-near-wallet-selector/core";
 import type { InjectedFiner } from "./injected-wallet";
 import icon from "./icon";
 

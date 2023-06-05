@@ -12,9 +12,9 @@ import type {
   EventEmitterService,
   VerifiedOwner,
   Account,
-} from "@near-wallet-selector/core";
-import { getActiveAccount } from "@near-wallet-selector/core";
-import { createAction } from "@near-wallet-selector/wallet-utils";
+} from "@near-finance-near-wallet-selector/core";
+import { getActiveAccount } from "@near-finance-near-wallet-selector/core";
+import { createAction } from "@near-finance-near-wallet-selector/wallet-utils";
 
 import WalletConnectClient from "./wallet-connect-client";
 import icon from "./icon";

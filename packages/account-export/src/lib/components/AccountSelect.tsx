@@ -1,9 +1,9 @@
+import { translate } from "@near-finance-near-wallet-selector/core";
 import type { ReactElement } from "react";
 import React, { Fragment } from "react";
-import { translate } from "@near-wallet-selector/core";
-import { ModalHeader } from "./ModalHeader";
 import type { ExportAccountData } from "./ExportAccount";
 import { ACCESS_KEY_TYPES } from "./ExportAccount";
+import { ModalHeader } from "./ModalHeader";
 
 interface AccountSelectProps {
   onCloseModal: () => void;

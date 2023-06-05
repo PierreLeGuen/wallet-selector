@@ -1,4 +1,4 @@
-import type { NetworkId } from "@near-wallet-selector/core";
+import type { NetworkId } from "@near-finance-near-wallet-selector/core";
 import { HereWallet } from "@here-wallet/core";
 import type BN from "bn.js";
 

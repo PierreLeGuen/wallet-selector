@@ -1,6 +1,6 @@
 import { BN } from "bn.js";
 import * as nearAPI from "near-api-js";
-import type { AddKeyPermission, Action } from "@near-wallet-selector/core";
+import type { AddKeyPermission, Action } from "@near-finance-near-wallet-selector/core";
 const { transactions, utils } = nearAPI;
 
 const getAccessKey = (permission: AddKeyPermission) => {

@@ -1,18 +1,18 @@
-import React, { Fragment, useCallback, useEffect, useState } from "react";
+import type { Transaction } from "@near-finance-near-wallet-selector/core";
+import BN from "bn.js";
 import { providers, utils } from "near-api-js";
 import type {
-  AccountView,
-  CodeResult,
+    AccountView,
+    CodeResult,
 } from "near-api-js/lib/providers/provider";
-import type { Transaction } from "@near-wallet-selector/core";
-import BN from "bn.js";
+import React, { Fragment, useCallback, useEffect, useState } from "react";
 
-import type { Account, Message } from "../interfaces";
-import { useWalletSelector } from "../contexts/WalletSelectorContext";
 import { CONTRACT_ID } from "../constants";
-import SignIn from "./SignIn";
+import { useWalletSelector } from "../contexts/WalletSelectorContext";
+import type { Account, Message } from "../interfaces";
 import Form from "./Form";
 import Messages from "./Messages";
+import SignIn from "./SignIn";
 
 type Submitted = SubmitEvent & {
   target: { elements: { [key: string]: HTMLInputElement } };

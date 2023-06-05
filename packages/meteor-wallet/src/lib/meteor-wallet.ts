@@ -6,7 +6,7 @@ import type {
   Transaction,
   WalletBehaviourFactory,
   WalletModuleFactory,
-} from "@near-wallet-selector/core";
+} from "@near-finance-near-wallet-selector/core";
 import type {
   MeteorWalletParams_Injected,
   MeteorWalletState,
@@ -16,7 +16,7 @@ import {
   EMeteorWalletSignInType,
   MeteorWallet as MeteorWalletSdk,
 } from "@meteorwallet/sdk";
-import { createAction } from "@near-wallet-selector/wallet-utils";
+import { createAction } from "@near-finance-near-wallet-selector/wallet-utils";
 import icon from "./icon";
 
 const setupWalletState = async (

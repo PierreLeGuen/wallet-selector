@@ -9,8 +9,8 @@ import type {
   Optional,
   Transaction,
   Account,
-} from "@near-wallet-selector/core";
-import { isCurrentBrowserSupported, waitFor } from "@near-wallet-selector/core";
+} from "@near-finance-near-wallet-selector/core";
+import { isCurrentBrowserSupported, waitFor } from "@near-finance-near-wallet-selector/core";
 import type {
   ViewAccessKeyParams,
   WalletProvider,
@@ -18,7 +18,7 @@ import type {
   WelldoneWalletState,
 } from "./injected-welldone";
 import icon from "./icon";
-import { signTransactions } from "@near-wallet-selector/wallet-utils";
+import { signTransactions } from "@near-finance-near-wallet-selector/wallet-utils";
 import isMobile from "is-mobile";
 
 export const STORAGE_ACCOUNT = "account";

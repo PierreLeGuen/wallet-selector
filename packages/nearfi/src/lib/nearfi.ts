@@ -8,7 +8,7 @@ import type {
   FunctionCallAction,
   Optional,
   Account,
-} from "@near-wallet-selector/core";
+} from "@near-finance-near-wallet-selector/core";
 import type { InjectedNearFi } from "./injected-nearfi";
 import icon from "./icon";
 

@@ -1,4 +1,4 @@
-# @near-wallet-selector/sender
+# @near-finance-near-wallet-selector/sender
 
 This is the [Sender](https://chrome.google.com/webstore/detail/sender-wallet/epapihdplajcdnnkdeiahlgigofloibg) package for NEAR Wallet Selector.
 
@@ -15,17 +15,17 @@ npm install near-api-js
 ```
 ```bash
 # Using Yarn
-yarn add @near-wallet-selector/sender
+yarn add @near-finance-near-wallet-selector/sender
 
 # Using NPM.
-npm install @near-wallet-selector/sender
+npm install @near-finance-near-wallet-selector/sender
 ```
 
 Then use it in your dApp:
 
 ```ts
-import { setupWalletSelector } from "@near-wallet-selector/core";
-import { setupSender } from "@near-wallet-selector/sender";
+import { setupWalletSelector } from "@near-finance-near-wallet-selector/core";
+import { setupSender } from "@near-finance-near-wallet-selector/sender";
 
 // Sender for Wallet Selector can be setup without any params or it can take one optional param.
 const sender = setupSender({
@@ -48,8 +48,8 @@ const selector = await setupWalletSelector({
 Assets such as icons can be found in the `/assets` directory of the package. Below is an example using Webpack:
 
 ```ts
-import { setupSender } from "@near-wallet-selector/sender";
-import senderIconUrl from "@near-wallet-selector/sender/assets/sender-icon.png";
+import { setupSender } from "@near-finance-near-wallet-selector/sender";
+import senderIconUrl from "@near-finance-near-wallet-selector/sender/assets/sender-icon.png";
 
 const sender = setupSender({
   iconUrl: senderIconUrl

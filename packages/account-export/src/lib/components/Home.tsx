@@ -1,7 +1,7 @@
 import React from "react";
 
+import { translate } from "@near-finance-near-wallet-selector/core";
 import { ModalHeader } from "./ModalHeader";
-import { translate } from "@near-wallet-selector/core";
 
 interface HomeProps {
   onCloseModal: () => void;

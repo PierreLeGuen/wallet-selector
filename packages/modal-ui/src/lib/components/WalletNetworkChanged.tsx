@@ -1,7 +1,7 @@
+import type { WalletSelector } from "@near-finance-near-wallet-selector/core";
 import React, { Fragment } from "react";
-import type { WalletSelector } from "@near-wallet-selector/core";
-import { ModalHeader } from "./ModalHeader";
 import { BackArrow } from "./BackArrow";
+import { ModalHeader } from "./ModalHeader";
 
 interface WalletNetworkChangedProps {
   selector: WalletSelector;

@@ -1,4 +1,4 @@
-# @near-wallet-selector/nightly-connect
+# @near-finance-near-wallet-selector/nightly-connect
 
 This is the [Nightly Connect](https://connect.nightly.app/) package for NEAR Wallet Selector.
 
@@ -16,16 +16,16 @@ npm install near-api-js
 
 ```bash
 # Using Yarn
-yarn add @near-wallet-selector/nightly-connect
+yarn add @near-finance-near-wallet-selector/nightly-connect
 
 # Using NPM.
-npm install @near-wallet-selector/nightly-connect
+npm install @near-finance-near-wallet-selector/nightly-connect
 ```
 Then use it in your dApp:
 
 ```ts
-import { setupWalletSelector } from "@near-wallet-selector/core";
-import { setupNightlyConnect } from "@near-wallet-selector/nightly-connect";
+import { setupWalletSelector } from "@near-finance-near-wallet-selector/core";
+import { setupNightlyConnect } from "@near-finance-near-wallet-selector/nightly-connect";
 
 const nightlyConnect = setupNightlyConnect({
   url: "wss://relay.nightly.app/app",
@@ -56,8 +56,8 @@ const selector = await setupWalletSelector({
 Assets such as icons can be found in the `/assets` directory of the package. Below is an example using Webpack:
 
 ```ts
-import { setupNightlyConnect } from "@near-wallet-selector/nightly-connect";
-import nightlyConnectIconUrl from "@near-wallet-selector/nightly-connect/assets/nightly-connect.png";
+import { setupNightlyConnect } from "@near-finance-near-wallet-selector/nightly-connect";
+import nightlyConnectIconUrl from "@near-finance-near-wallet-selector/nightly-connect/assets/nightly-connect.png";
 
 const nightlyConnect = setupNightlyConnect({
   iconUrl: nightlyConnectIconUrl

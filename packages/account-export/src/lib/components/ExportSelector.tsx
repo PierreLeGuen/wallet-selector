@@ -1,15 +1,15 @@
+import type { ModuleState, WalletSelector } from "@near-finance-near-wallet-selector/core";
 import React, { useCallback, useEffect, useState } from "react";
-import type { ModuleState, WalletSelector } from "@near-wallet-selector/core";
 
-import type { ExportSelectorOptions, Theme, ModalRoute } from "../index.types";
-import { WalletList } from "./WalletList";
+import type { ExportSelectorOptions, ModalRoute, Theme } from "../index.types";
 import { AlertMessage } from "./AlertMessage";
+import { WalletList } from "./WalletList";
 
 import { WalletNotInstalled } from "./WalletNotInstalled";
 
-import { Home } from "./Home";
-import { translate } from "@near-wallet-selector/core";
+import { translate } from "@near-finance-near-wallet-selector/core";
 import { ExportAccount } from "./ExportAccount";
+import { Home } from "./Home";
 
 interface ExportSelectorProps {
   selector: WalletSelector;

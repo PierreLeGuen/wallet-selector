@@ -1,4 +1,4 @@
-// based on @near-wallet-selector/sender
+// based on @near-finance-near-wallet-selector/sender
 
 import type { Account, providers } from "near-api-js";
 

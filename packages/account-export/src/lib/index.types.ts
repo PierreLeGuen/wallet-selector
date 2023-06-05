@@ -1,7 +1,7 @@
 import type {
   AccountImportData,
   ModuleState,
-} from "@near-wallet-selector/core";
+} from "@near-finance-near-wallet-selector/core";
 
 export type Theme = "dark" | "light" | "auto";
 

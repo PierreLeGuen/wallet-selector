@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 
 import type {
-  BrowserWallet,
-  InjectedWallet,
-  ModuleState,
-  WalletSelector,
-} from "@near-wallet-selector/core";
-import { ModalHeader } from "./ModalHeader";
+    BrowserWallet,
+    InjectedWallet,
+    ModuleState,
+    WalletSelector,
+} from "@near-finance-near-wallet-selector/core";
+import { translate } from "@near-finance-near-wallet-selector/core";
 import { BackArrow } from "./BackArrow";
-import { translate } from "@near-wallet-selector/core";
-import { QRIcon } from "./icons/QRIcon";
-import { LinkIcon } from "./icons/LinkIcon";
-import { KeyIcon } from "./icons/KeyIcon";
+import { ModalHeader } from "./ModalHeader";
 import { FolderIcon } from "./icons/FolderIcon";
+import { KeyIcon } from "./icons/KeyIcon";
+import { LinkIcon } from "./icons/LinkIcon";
+import { QRIcon } from "./icons/QRIcon";
 
 interface WalletHomeProps {
   selector: WalletSelector;

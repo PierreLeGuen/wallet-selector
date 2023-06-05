@@ -8,8 +8,8 @@ import type {
   FunctionCallAction,
   Optional,
   Account,
-} from "@near-wallet-selector/core";
-import { waitFor } from "@near-wallet-selector/core";
+} from "@near-finance-near-wallet-selector/core";
+import { waitFor } from "@near-finance-near-wallet-selector/core";
 import type { InjectedSender } from "./injected-sender";
 import icon from "./icon";
 

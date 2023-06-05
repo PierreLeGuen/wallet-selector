@@ -5,7 +5,7 @@ import type {
   Action,
   FunctionCallAction,
   WalletBehaviourFactory,
-} from "@near-wallet-selector/core";
+} from "@near-finance-near-wallet-selector/core";
 import detectEthereumProvider from "@metamask/detect-provider";
 import { nethIcon } from "../assets/icons";
 import {

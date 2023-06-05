@@ -1,4 +1,4 @@
-# @near-wallet-selector/wallet-connect
+# @near-finance-near-wallet-selector/wallet-connect
 
 This is the [WalletConnect](https://walletconnect.com/) package for NEAR Wallet Selector.
 
@@ -15,17 +15,17 @@ npm install near-api-js
 ```
 ```bash
 # Using Yarn
-yarn add @near-wallet-selector/wallet-connect
+yarn add @near-finance-near-wallet-selector/wallet-connect
 
 # Using NPM.
-npm install @near-wallet-selector/wallet-connect
+npm install @near-finance-near-wallet-selector/wallet-connect
 ```
 
 Then use it in your dApp:
 
 ```ts
-import { setupWalletSelector } from "@near-wallet-selector/core";
-import { setupWalletConnect } from "@near-wallet-selector/wallet-connect";
+import { setupWalletSelector } from "@near-finance-near-wallet-selector/core";
+import { setupWalletConnect } from "@near-finance-near-wallet-selector/wallet-connect";
 
 const walletConnect = setupWalletConnect({
   projectId: "c4f79cc...",
@@ -64,8 +64,8 @@ Project ID is required for wallet connect, please obtain it from [walletconnect.
 Assets such as icons can be found in the `/assets` directory of the package. Below is an example using Webpack:
 
 ```ts
-import { setupWalletConnect } from "@near-wallet-selector/wallet-connect";
-import walletConnectIconUrl from "@near-wallet-selector/wallet-connect/assets/wallet-connect-icon.png";
+import { setupWalletConnect } from "@near-finance-near-wallet-selector/wallet-connect";
+import walletConnectIconUrl from "@near-finance-near-wallet-selector/wallet-connect/assets/wallet-connect-icon.png";
 
 const walletConnect = setupWalletConnect({
   iconUrl: walletConnectIconUrl

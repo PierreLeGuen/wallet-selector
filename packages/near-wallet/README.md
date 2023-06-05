@@ -1,4 +1,4 @@
-# @near-wallet-selector/near-wallet
+# @near-finance-near-wallet-selector/near-wallet
 
 This is the [NEAR Wallet](https://wallet.near.org/) package for NEAR Wallet Selector.
 
@@ -8,17 +8,17 @@ The easiest way to use this package is to install it from the NPM registry:
 
 ```bash
 # Using Yarn
-yarn add @near-wallet-selector/near-wallet
+yarn add @near-finance-near-wallet-selector/near-wallet
 
 # Using NPM.
-npm install @near-wallet-selector/near-wallet
+npm install @near-finance-near-wallet-selector/near-wallet
 ```
 
 Then use it in your dApp:
 
 ```ts
-import { setupWalletSelector } from "@near-wallet-selector/core";
-import { setupNearWallet } from "@near-wallet-selector/near-wallet";
+import { setupWalletSelector } from "@near-finance-near-wallet-selector/core";
+import { setupNearWallet } from "@near-finance-near-wallet-selector/near-wallet";
 
 // NEAR Wallet for Wallet Selector can be setup without any params or it can take two optional params.
 const nearWallet = setupNearWallet({
@@ -45,8 +45,8 @@ const selector = await setupWalletSelector({
 Assets such as icons can be found in the `/assets` directory of the package. Below is an example using Webpack:
 
 ```ts
-import { setupNearWallet } from "@near-wallet-selector/near-wallet";
-import nearWalletIconUrl from "@near-wallet-selector/near-wallet/assets/near-wallet-icon.png";
+import { setupNearWallet } from "@near-finance-near-wallet-selector/near-wallet";
+import nearWalletIconUrl from "@near-finance-near-wallet-selector/near-wallet/assets/near-wallet-icon.png";
 
 const nearWallet = setupNearWallet({
   iconUrl: nearWalletIconUrl

@@ -1,28 +1,28 @@
-import React, { useCallback, useEffect, useState } from "react";
 import type {
-  EventEmitterService,
-  ModuleState,
-  WalletSelector,
-} from "@near-wallet-selector/core";
+    EventEmitterService,
+    ModuleState,
+    WalletSelector,
+} from "@near-finance-near-wallet-selector/core";
+import React, { useCallback, useEffect, useState } from "react";
 
 import type {
-  ModalEvents,
-  ModalHideReason,
-  ModalOptions,
-  Theme,
+    ModalEvents,
+    ModalHideReason,
+    ModalOptions,
+    Theme,
 } from "../modal.types";
-import type { ModalRoute } from "./Modal.types";
-import { WalletNetworkChanged } from "./WalletNetworkChanged";
-import { WalletOptions } from "./WalletOptions";
 import { AlertMessage } from "./AlertMessage";
 import { DerivationPath } from "./DerivationPath";
+import type { ModalRoute } from "./Modal.types";
 import { WalletConnecting } from "./WalletConnecting";
+import { WalletNetworkChanged } from "./WalletNetworkChanged";
 import { WalletNotInstalled } from "./WalletNotInstalled";
+import { WalletOptions } from "./WalletOptions";
 
-import { WalletHome } from "./WalletHome";
-import { WalletConnected } from "./WalletConnected";
+import { allowOnlyLanguage, translate } from "@near-finance-near-wallet-selector/core";
 import { ScanQRCode } from "./ScanQRCode";
-import { translate, allowOnlyLanguage } from "@near-wallet-selector/core";
+import { WalletConnected } from "./WalletConnected";
+import { WalletHome } from "./WalletHome";
 
 interface ModalProps {
   selector: WalletSelector;

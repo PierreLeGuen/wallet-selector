@@ -8,9 +8,9 @@ import type {
   EventEmitterService,
   WalletEvents,
   Account,
-} from "@near-wallet-selector/core";
-import { waitFor } from "@near-wallet-selector/core";
-import { signTransactions } from "@near-wallet-selector/wallet-utils";
+} from "@near-finance-near-wallet-selector/core";
+import { waitFor } from "@near-finance-near-wallet-selector/core";
+import { signTransactions } from "@near-finance-near-wallet-selector/wallet-utils";
 import { isMobile } from "is-mobile";
 import type { Signer } from "near-api-js";
 import * as nearAPI from "near-api-js";

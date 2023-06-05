@@ -1,4 +1,4 @@
-# @near-wallet-selector/account-export
+# @near-finance-near-wallet-selector/account-export
 
 This is the Export Selector UI package for NEAR Wallet Selector.
 
@@ -8,18 +8,18 @@ The easiest way to use this package is to install it from the NPM registry:
 
 ```bash
 # Using Yarn
-yarn add @near-wallet-selector/account-export
+yarn add @near-finance-near-wallet-selector/account-export
 
 # Using NPM.
-npm install @near-wallet-selector/account-export
+npm install @near-finance-near-wallet-selector/account-export
 ```
 
 Then use it in your wallet:
 
 ```ts
-import { setupWalletSelector } from "@near-wallet-selector/core";
-import { setupExportSelectorModal } from "@near-wallet-selector/account-export";
-import { setupNearWallet } from "@near-wallet-selector/near-wallet";
+import { setupWalletSelector } from "@near-finance-near-wallet-selector/core";
+import { setupExportSelectorModal } from "@near-finance-near-wallet-selector/account-export";
+import { setupNearWallet } from "@near-finance-near-wallet-selector/near-wallet";
 
 const selector = await setupWalletSelector({
   network: "testnet",
@@ -53,8 +53,8 @@ Import modal css styles:
 
 ```ts
 // Add import in the main component
-import "@near-wallet-selector/modal-ui/styles.css";
-import "@near-wallet-selector/account-export/styles.css";
+import "@near-finance-near-wallet-selector/modal-ui/styles.css";
+import "@near-finance-near-wallet-selector/account-export/styles.css";
 ```
 
 These are the available css variables:

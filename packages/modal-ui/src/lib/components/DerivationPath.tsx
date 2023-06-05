@@ -1,20 +1,20 @@
-import React, { Fragment, useState } from "react";
 import type {
-  HardwareWallet,
-  HardwareWalletAccount,
-  Wallet,
-  WalletSelector,
-} from "@near-wallet-selector/core";
+    HardwareWallet,
+    HardwareWalletAccount,
+    Wallet,
+    WalletSelector,
+} from "@near-finance-near-wallet-selector/core";
+import { translate } from "@near-finance-near-wallet-selector/core";
+import React, { Fragment, useState } from "react";
 import type { ModalOptions } from "../modal.types";
-import type { DerivationPathModalRouteParams } from "./Modal.types";
-import HardwareWalletAccountsForm from "./HardwareWalletAccountsForm";
-import { WalletConnecting } from "./WalletConnecting";
-import { ModalHeader } from "./ModalHeader";
 import { BackArrow } from "./BackArrow";
-import { LedgerDeviceIcon } from "./icons/LedgerDeviceIcon";
-import { translate } from "@near-wallet-selector/core";
-import { UpArrowIcon } from "./icons/UpArrowIcon";
+import HardwareWalletAccountsForm from "./HardwareWalletAccountsForm";
+import type { DerivationPathModalRouteParams } from "./Modal.types";
+import { ModalHeader } from "./ModalHeader";
+import { WalletConnecting } from "./WalletConnecting";
 import { DownArrowIcon } from "./icons/DownArrowIcon";
+import { LedgerDeviceIcon } from "./icons/LedgerDeviceIcon";
+import { UpArrowIcon } from "./icons/UpArrowIcon";
 
 interface DerivationPathProps {
   selector: WalletSelector;

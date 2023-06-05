@@ -7,8 +7,8 @@ import type {
   Optional,
   Network,
   Account,
-} from "@near-wallet-selector/core";
-import { createAction } from "@near-wallet-selector/wallet-utils";
+} from "@near-finance-near-wallet-selector/core";
+import { createAction } from "@near-finance-near-wallet-selector/wallet-utils";
 import icon from "./icon";
 
 declare global {
