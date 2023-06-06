@@ -2,16 +2,19 @@ import type { ModuleState } from "@near-finance-near-wallet-selector/core";
 import { translate } from "@near-finance-near-wallet-selector/core";
 import React, { Fragment } from "react";
 import { CloseButton } from "./CloseButton";
+import type { ModalRoute } from "./Modal.types";
 import { ConnectionSuccessIcon } from "./icons/ConnectionSuccessIcon";
 
 interface WalletConnectedProps {
   module: ModuleState;
   onCloseModal: () => void;
+  setRoute: (route: ModalRoute) => void;
 }
 
 export const WalletConnected: React.FC<WalletConnectedProps> = ({
   module,
   onCloseModal,
+  setRoute,
 }) => {
   return (
     <Fragment>
@@ -30,6 +33,21 @@ export const WalletConnected: React.FC<WalletConnectedProps> = ({
             <ConnectionSuccessIcon />
             <span>{translate("modal.wallet.connectionSuccessful")}</span>
           </div>
+          {module.id === "ledger" ? (
+            <div className="action-buttons">
+              <button
+                className="middleButton"
+                onClick={() => {
+                  setRoute({
+                    name: "DerivationPath",
+                    params: { walletId: module.id },
+                  });
+                }}
+              >
+                Reload wallets
+              </button>
+            </div>
+          ) : null}
         </div>
       </div>
     </Fragment>

@@ -1,5 +1,8 @@
 import { setupCoin98Wallet } from "@near-finance-near-wallet-selector/coin98-wallet";
-import type { AccountState, WalletSelector } from "@near-finance-near-wallet-selector/core";
+import type {
+  AccountState,
+  WalletSelector,
+} from "@near-finance-near-wallet-selector/core";
 import { setupWalletSelector } from "@near-finance-near-wallet-selector/core";
 import { setupHereWallet } from "@near-finance-near-wallet-selector/here-wallet";
 import { setupMathWallet } from "@near-finance-near-wallet-selector/math-wallet";
@@ -18,11 +21,11 @@ import { setupWelldoneWallet } from "@near-finance-near-wallet-selector/welldone
 import { setupXDEFI } from "@near-finance-near-wallet-selector/xdefi";
 import type { ReactNode } from "react";
 import React, {
-    useCallback,
-    useContext,
-    useEffect,
-    useMemo,
-    useState,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
 } from "react";
 import { distinctUntilChanged, map } from "rxjs";
 
@@ -61,7 +64,7 @@ export const WalletSelectorContextProvider: React.FC<{
 
   const init = useCallback(async () => {
     const _selector = await setupWalletSelector({
-      network: "testnet",
+      network: "mainnet",
       debug: true,
       modules: [
         setupMyNearWallet(),

@@ -142,10 +142,6 @@ const Ledger: WalletBehaviourFactory<HardwareWallet> = async ({
       (accessKey) => {
         logger.log("validateAccessKey:accessKey", { accessKey });
 
-        if (accessKey.permission !== "FullAccess") {
-          throw new Error("Public key requires 'FullAccess' permission");
-        }
-
         return accessKey;
       },
       (err) => {

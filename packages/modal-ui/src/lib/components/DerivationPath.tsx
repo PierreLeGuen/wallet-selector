@@ -1,8 +1,8 @@
 import type {
-    HardwareWallet,
-    HardwareWalletAccount,
-    Wallet,
-    WalletSelector,
+  HardwareWallet,
+  HardwareWalletAccount,
+  Wallet,
+  WalletSelector,
 } from "@near-finance-near-wallet-selector/core";
 import { translate } from "@near-finance-near-wallet-selector/core";
 import React, { Fragment, useState } from "react";
@@ -125,7 +125,6 @@ export const DerivationPath: React.FC<DerivationPathProps> = ({
         return;
       }
       const noAccounts = resolvedAccounts.length === 0;
-      const multipleAccounts = resolvedAccounts.length > 1;
 
       if (noAccounts) {
         setHeaderTitle(translate("modal.ledger.noAccountsFound"));
@@ -134,13 +133,8 @@ export const DerivationPath: React.FC<DerivationPathProps> = ({
       }
       setAccounts(resolvedAccounts);
 
-      if (!multipleAccounts) {
-        setSelectedAccounts(resolvedAccounts);
-        setRoute("OverviewAccounts");
-      } else {
-        setHeaderTitle(translate("modal.ledger.selectYourAccounts"));
-        setRoute("ChooseAccount");
-      }
+      setSelectedAccounts(resolvedAccounts);
+      setRoute("OverviewAccounts");
     } catch (err) {
       setConnecting(false);
       const message =

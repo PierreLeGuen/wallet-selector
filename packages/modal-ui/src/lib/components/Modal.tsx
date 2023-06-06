@@ -1,15 +1,15 @@
 import type {
-    EventEmitterService,
-    ModuleState,
-    WalletSelector,
+  EventEmitterService,
+  ModuleState,
+  WalletSelector,
 } from "@near-finance-near-wallet-selector/core";
 import React, { useCallback, useEffect, useState } from "react";
 
 import type {
-    ModalEvents,
-    ModalHideReason,
-    ModalOptions,
-    Theme,
+  ModalEvents,
+  ModalHideReason,
+  ModalOptions,
+  Theme,
 } from "../modal.types";
 import { AlertMessage } from "./AlertMessage";
 import { DerivationPath } from "./DerivationPath";
@@ -19,7 +19,10 @@ import { WalletNetworkChanged } from "./WalletNetworkChanged";
 import { WalletNotInstalled } from "./WalletNotInstalled";
 import { WalletOptions } from "./WalletOptions";
 
-import { allowOnlyLanguage, translate } from "@near-finance-near-wallet-selector/core";
+import {
+  allowOnlyLanguage,
+  translate,
+} from "@near-finance-near-wallet-selector/core";
 import { ScanQRCode } from "./ScanQRCode";
 import { WalletConnected } from "./WalletConnected";
 import { WalletHome } from "./WalletHome";
@@ -372,6 +375,7 @@ export const Modal: React.FC<ModalProps> = ({
                 onCloseModal={() =>
                   handleDismissClick({ hideReason: "user-triggered" })
                 }
+                setRoute={setRoute}
               />
             )}
 

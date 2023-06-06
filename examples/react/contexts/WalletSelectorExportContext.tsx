@@ -1,7 +1,10 @@
 import type { WalletSelectorModal } from "@near-finance-near-wallet-selector/account-export";
 import { setupExportSelectorModal } from "@near-finance-near-wallet-selector/account-export";
 import { setupCoin98Wallet } from "@near-finance-near-wallet-selector/coin98-wallet";
-import type { AccountState, WalletSelector } from "@near-finance-near-wallet-selector/core";
+import type {
+  AccountState,
+  WalletSelector,
+} from "@near-finance-near-wallet-selector/core";
 import { setupWalletSelector } from "@near-finance-near-wallet-selector/core";
 import { setupHereWallet } from "@near-finance-near-wallet-selector/here-wallet";
 import { setupLedger } from "@near-finance-near-wallet-selector/ledger";
@@ -18,11 +21,11 @@ import { setupWalletConnect } from "@near-finance-near-wallet-selector/wallet-co
 import { setupWelldoneWallet } from "@near-finance-near-wallet-selector/welldone-wallet";
 import type { ReactNode } from "react";
 import React, {
-    useCallback,
-    useContext,
-    useEffect,
-    useMemo,
-    useState,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
 } from "react";
 import { distinctUntilChanged, map } from "rxjs";
 import { Loading } from "../components/Loading";
@@ -54,7 +57,7 @@ export const ExportAccountSelectorContextProvider: React.FC<{
 
   const init = useCallback(async () => {
     const _selector = await setupWalletSelector({
-      network: "testnet",
+      network: "mainnet",
       debug: true,
       modules: [
         setupMyNearWallet(),
