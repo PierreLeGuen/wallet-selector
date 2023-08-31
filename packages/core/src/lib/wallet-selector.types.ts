@@ -106,4 +106,10 @@ export interface WalletSelector {
     eventName: EventName,
     callback: (event: WalletSelectorEvents[EventName]) => void
   ): void;
+
+  /**
+   * Add accounts to the wallet selector.
+   * Used to update accounts manually from client side. No need to relogin into wallet.
+   */
+  updateAccounts(walletId: string, accounts: Array<Account>): void;
 }

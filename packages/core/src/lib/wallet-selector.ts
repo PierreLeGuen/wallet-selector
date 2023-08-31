@@ -6,7 +6,7 @@ import type {
   WalletSelectorParams,
 } from "./wallet-selector.types";
 import { EventEmitter, Logger, Provider, WalletModules } from "./services";
-import type { Wallet } from "./wallet";
+import type { Account, Wallet } from "./wallet";
 import type { Store } from "./store.types";
 import type { Options } from "./options.types";
 
@@ -59,6 +59,12 @@ const createSelector = (
     },
     off: (eventName, callback) => {
       emitter.off(eventName, callback);
+    },
+    updateAccounts: (walletId: string, accounts: Array<Account>) => {
+      store.dispatch({
+        type: "ACCOUNTS_CHANGED",
+        payload: { walletId, accounts },
+      });
     },
   };
 };

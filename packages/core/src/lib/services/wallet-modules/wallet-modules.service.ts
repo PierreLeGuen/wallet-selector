@@ -66,6 +66,7 @@ export class WalletModules {
 
         return [];
       });
+      logger.log("validateWallet", { id, accounts });
     }
 
     return accounts;

@@ -5,7 +5,10 @@ import type {
   AccountView,
   CodeResult,
 } from "near-api-js/lib/providers/provider";
-import type { AccountState, Transaction } from "@near-finance-near-wallet-selector/core";
+import type {
+  AccountState,
+  Transaction,
+} from "@near-finance-near-wallet-selector/core";
 
 import type { Message } from "../../interfaces/message";
 import type { Submitted } from "../form/form.component";

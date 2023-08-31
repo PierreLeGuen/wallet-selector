@@ -124,6 +124,7 @@ export const DerivationPath: React.FC<DerivationPathProps> = ({
         setRoute("AddCustomAccountId");
         return;
       }
+
       const noAccounts = resolvedAccounts.length === 0;
 
       if (noAccounts) {
@@ -406,16 +407,15 @@ export const DerivationPath: React.FC<DerivationPathProps> = ({
         {route === "OverviewAccounts" && (
           <div className="overview-wrapper">
             <p>{translate("modal.ledger.overviewTheListOfAuthorized")}</p>
-            <div className="accounts">
-              {selectedAccounts.map((account, index) => (
-                <div key={account.accountId}>
-                  <div className="account">
+            <div>
+              {accounts.map((account) => {
+                return (
+                  <div key={account.accountId}>
                     <span>{account.accountId}</span>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
-
             <div className="action-buttons">
               <button
                 className="middleButton"

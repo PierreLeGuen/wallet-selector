@@ -1,5 +1,8 @@
 import type { OnInit } from "@angular/core";
-import type { AccountState, WalletSelector } from "@near-finance-near-wallet-selector/core";
+import type {
+  AccountState,
+  WalletSelector,
+} from "@near-finance-near-wallet-selector/core";
 import { setupWalletSelector } from "@near-finance-near-wallet-selector/core";
 import type { WalletSelectorModal } from "@near-finance-near-wallet-selector/modal-ui-js";
 import { setupModal } from "@near-finance-near-wallet-selector/modal-ui-js";
@@ -52,7 +55,7 @@ export class WalletSelectorComponent implements OnInit {
 
   async initialize() {
     const _selector = await setupWalletSelector({
-      network: "testnet",
+      network: "mainnet",
       debug: true,
       modules: [
         setupMyNearWallet(),

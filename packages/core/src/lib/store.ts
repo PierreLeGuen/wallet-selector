@@ -136,9 +136,10 @@ const reducer = (
 
 export const createStore = async (storage: StorageService): Promise<Store> => {
   const jsonStorage = new JsonStorage(storage, PACKAGE_NAME);
+  const selectedWallet = await jsonStorage.getItem(SELECTED_WALLET_ID);
   const initialState: WalletSelectorState = {
     modules: [],
-    accounts: [],
+    accounts: (await jsonStorage.getItem(selectedWallet + ":accounts")) || [],
     contract: await jsonStorage.getItem(CONTRACT),
     selectedWalletId: await jsonStorage.getItem(SELECTED_WALLET_ID),
     recentlySignedInWallets:
@@ -177,6 +178,17 @@ export const createStore = async (storage: StorageService): Promise<Store> => {
       state,
       RECENTLY_SIGNED_IN_WALLETS,
       "recentlySignedInWallets"
+    );
+    state.accounts.map((account) => {
+      if (account.publicKey?.startsWith("ed25519:")) {
+        account.publicKey = account.publicKey.slice(8);
+      }
+    });
+    syncStorage(
+      prevState,
+      state,
+      state.selectedWalletId + ":accounts",
+      "accounts"
     );
     prevState = state;
   });

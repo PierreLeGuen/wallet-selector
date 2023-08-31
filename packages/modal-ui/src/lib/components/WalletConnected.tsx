@@ -16,6 +16,12 @@ export const WalletConnected: React.FC<WalletConnectedProps> = ({
   onCloseModal,
   setRoute,
 }) => {
+  async function signOut() {
+    const w = await module.wallet();
+    w.signOut();
+    onCloseModal();
+  }
+
   return (
     <Fragment>
       <div className="nws-modal-header">
@@ -35,16 +41,8 @@ export const WalletConnected: React.FC<WalletConnectedProps> = ({
           </div>
           {module.id === "ledger" ? (
             <div className="action-buttons">
-              <button
-                className="middleButton"
-                onClick={() => {
-                  setRoute({
-                    name: "DerivationPath",
-                    params: { walletId: module.id },
-                  });
-                }}
-              >
-                Reload wallets
+              <button className="middleButton" onClick={() => signOut()}>
+                Log Out
               </button>
             </div>
           ) : null}

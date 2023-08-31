@@ -2,8 +2,8 @@ import type { Transaction } from "@near-finance-near-wallet-selector/core";
 import BN from "bn.js";
 import { providers, utils } from "near-api-js";
 import type {
-    AccountView,
-    CodeResult,
+  AccountView,
+  CodeResult,
 } from "near-api-js/lib/providers/provider";
 import React, { Fragment, useCallback, useEffect, useState } from "react";
 
@@ -127,6 +127,17 @@ const Content: React.FC = () => {
       console.log("Failed to sign out");
       console.error(err);
     });
+  };
+
+  const handleManuallyAddWallet = async () => {
+    const wallet = await selector.wallet();
+    selector.updateAccounts(wallet.id, [
+      ...selector.store.getState().accounts,
+      {
+        accountId: "test.near",
+        publicKey: "ed25519:test",
+      },
+    ]);
   };
 
   const handleSwitchWallet = () => {
@@ -274,6 +285,7 @@ const Content: React.FC = () => {
   return (
     <Fragment>
       <div>
+        <button onClick={handleManuallyAddWallet}>Manually add wallet</button>
         <button onClick={handleSignOut}>Log out</button>
         <button onClick={handleSwitchWallet}>Switch Wallet</button>
         <button onClick={handleVerifyOwner}>Verify Owner</button>
