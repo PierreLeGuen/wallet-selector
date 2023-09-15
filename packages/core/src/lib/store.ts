@@ -47,6 +47,7 @@ const reducer = (
       };
     }
     case "WALLET_CONNECTED": {
+      logger.log("WALLET_CONNECTED", action.payload);
       const { walletId, contract, accounts, recentlySignedInWallets } =
         action.payload;
 
@@ -64,6 +65,8 @@ const reducer = (
           active: i === (activeAccountIndex > -1 ? activeAccountIndex : 0),
         };
       });
+
+      logger.log("WALLET_CONNECTED:accountStates", accountStates);
 
       return {
         ...state,
@@ -157,6 +160,8 @@ export const createStore = async (storage: StorageService): Promise<Store> => {
     storageKey: string,
     property: keyof WalletSelectorState
   ) => {
+    logger.log("Store:syncStorage", { prevState, state, storageKey, property });
+
     if (state[property] === prevState[property]) {
       return;
     }

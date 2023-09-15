@@ -43,6 +43,12 @@ export interface Account {
    * Account public key.
    */
   publicKey?: string;
+
+  /**
+   * Applicable to hardware wallets (e.g. Ledger). This is the derivation path used to sign the transaction.
+   * More info here:
+   */
+  derivationPath?: string;
 }
 
 export interface SignInParams {

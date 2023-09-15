@@ -37,6 +37,8 @@ export type AccountState = Account & {
    * Is account set as active.
    */
   active: boolean;
+
+  derivationPath?: string;
 };
 
 export interface WalletSelectorState {

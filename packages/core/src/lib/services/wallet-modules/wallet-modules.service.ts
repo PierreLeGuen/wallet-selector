@@ -173,6 +173,12 @@ export class WalletModules {
     walletId: string,
     { accounts, contractId, methodNames }: WalletEvents["signedIn"]
   ) {
+    logger.log("onWalletSignedIn", {
+      walletId,
+      accounts,
+      contractId,
+      methodNames,
+    });
     const { selectedWalletId } = this.store.getState();
     const jsonStorage = new JsonStorage(this.storage, PACKAGE_NAME);
     const contract = { contractId, methodNames };

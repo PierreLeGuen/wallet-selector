@@ -80,7 +80,7 @@ const Ledger: WalletBehaviourFactory<HardwareWallet> = async ({
     },
     signMessage: async (message, accountId) => {
       const account = _state.accounts.find((a) => a.accountId === accountId);
-
+      logger.log("signMessage", { message, accountId, account });
       if (!account) {
         throw new Error("Failed to find account for signing");
       }
@@ -101,6 +101,7 @@ const Ledger: WalletBehaviourFactory<HardwareWallet> = async ({
     return _state.accounts.map((x) => ({
       accountId: x.accountId,
       publicKey: "ed25519:" + x.publicKey,
+      derivationPath: x.derivationPath,
     }));
   };
 
@@ -164,22 +165,23 @@ const Ledger: WalletBehaviourFactory<HardwareWallet> = async ({
     }
 
     const account = getActiveAccount(store.getState());
-
     if (!account) {
       throw new Error("No active account");
     }
 
     return transactions.map((transaction) => {
-      return {
+      const t = {
         signerId: transaction.signerId || account.accountId,
         receiverId: transaction.receiverId || contract.contractId,
         actions: transaction.actions,
       };
+      return t;
     });
   };
 
   return {
     async signIn({ accounts }) {
+      logger.log("Ledger:signIn", { accounts });
       const existingAccounts = getAccounts();
 
       if (existingAccounts.length) {
@@ -225,7 +227,14 @@ const Ledger: WalletBehaviourFactory<HardwareWallet> = async ({
     },
 
     async signAndSendTransaction({ signerId, receiverId, actions }) {
-      logger.log("signAndSendTransaction", { signerId, receiverId, actions });
+      // const pk = signer.getPublicKey();
+      logger.log("HERE: signAndSendTransaction", {
+        signerId,
+        receiverId,
+        actions,
+        signer,
+        // pk,
+      });
 
       if (!_state.accounts.length) {
         throw new Error("Wallet not signed in");
@@ -234,11 +243,13 @@ const Ledger: WalletBehaviourFactory<HardwareWallet> = async ({
       // Note: Connection must be triggered by user interaction.
       await connectLedgerDevice();
 
+      logger.log("Going to sign transaction");
       const signedTransactions = await signTransactions(
         transformTransactions([{ signerId, receiverId, actions }]),
         signer,
         options.network
       );
+      logger.log("Signed transactions", { signedTransactions });
 
       return provider.sendTransaction(signedTransactions[0]);
     },

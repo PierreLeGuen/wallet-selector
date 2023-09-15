@@ -1,1 +1,1 @@
-export const CONTRACT_ID = "lockup.near";
+export const CONTRACT_ID = "guest-book.testnet";
