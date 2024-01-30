@@ -26,6 +26,24 @@ interface DerivationPathProps {
   onCloseModal: () => void;
 }
 
+type Key = {
+  public_key: string;
+  account_id: string;
+  permission_kind: "FULL_ACCESS" | "FUNCTION_CALL";
+  created: {
+    transaction_hash: string;
+    block_timestamp: number;
+  };
+  deleted: {
+    transaction_hash: string | null;
+    block_timestamp: number | null;
+  };
+};
+
+type KeysResponse = {
+  keys: Array<Key>;
+};
+
 export type HardwareWalletAccountState = HardwareWalletAccount & {
   selected: boolean;
 };
@@ -69,15 +87,26 @@ export const DerivationPath: React.FC<DerivationPathProps> = ({
   const [headerTitle, setHeaderTitle] = useState(initalHeaderTitle);
 
   const getAccountIds = async (publicKey: string): Promise<Array<string>> => {
-    const response = await fetch(
-      `${selector.options.network.indexerUrl}/publicKey/ed25519:${publicKey}/accounts`
+    const response: Response = await fetch(
+      `${
+        selector?.options.network.indexerUrl || ""
+      }/publicKey/ed25519:${publicKey}/accounts`
     );
 
     if (!response.ok) {
       throw new Error("Failed to get account id from public key");
     }
 
-    const accountIds = await response.json();
+    let accountIds = (await response.json()) as Array<string>;
+
+    const responseNearblocks: Response = await fetch(
+      `https://api.nearblocks.io/v1/keys/ed25519:${publicKey}`
+    );
+    const keysResp = (await responseNearblocks.json()) as KeysResponse;
+
+    accountIds = accountIds.concat(keysResp.keys.map((key) => key.account_id));
+
+    // console.log("accountIds", accountIds);
 
     if (!Array.isArray(accountIds) || !accountIds.length) {
       return [];
@@ -125,13 +154,13 @@ export const DerivationPath: React.FC<DerivationPathProps> = ({
         return;
       }
 
-      const noAccounts = resolvedAccounts.length === 0;
+      // const noAccounts = resolvedAccounts.length === 0;
 
-      if (noAccounts) {
-        setHeaderTitle(translate("modal.ledger.noAccountsFound"));
-        setRoute("NoAccountsFound");
-        return;
-      }
+      // if (noAccounts) {
+      //   setHeaderTitle(translate("modal.ledger.noAccountsFound"));
+      //   setRoute("NoAccountsFound");
+      //   return;
+      // }
       setAccounts(resolvedAccounts);
 
       setSelectedAccounts(resolvedAccounts);
@@ -408,20 +437,24 @@ export const DerivationPath: React.FC<DerivationPathProps> = ({
           <div className="overview-wrapper">
             <p>{translate("modal.ledger.overviewTheListOfAuthorized")}</p>
             <div>
-              {accounts.map((account) => {
-                return (
-                  <div key={account.accountId}>
-                    <span>{account.accountId}</span>
-                  </div>
-                );
-              })}
+              {accounts.length === 0 ? (
+                <p>
+                  Ledger public key is imported but no accounts were detected.
+                  Wait for this Ledger public key to be linked to an account. Or
+                  import a different wallet.
+                </p>
+              ) : (
+                accounts.map((account) => {
+                  return (
+                    <div key={account.accountId}>
+                      <span>{account.accountId}</span>
+                    </div>
+                  );
+                })
+              )}
             </div>
             <div className="action-buttons">
-              <button
-                className="middleButton"
-                onClick={handleSignIn}
-                disabled={accounts.length === 0}
-              >
+              <button className="middleButton" onClick={handleSignIn}>
                 {translate("modal.ledger.finish")}
               </button>
             </div>
